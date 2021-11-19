@@ -1,0 +1,2 @@
+include ':demo-app'
+rootProject.name = "Active Look Demo Applications"
