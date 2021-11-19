@@ -53,7 +53,7 @@
 		2307D9862732C1CB000732DC /* PageCommandsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCommandsViewController.swift; sourceTree = "<group>"; };
 		2307D9872732C1CB000732DC /* DisplayCommandsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayCommandsViewController.swift; sourceTree = "<group>"; };
 		2307D9882732C1CB000732DC /* GeneralCommandsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralCommandsViewController.swift; sourceTree = "<group>"; };
-		23923B732747AF0400C441AA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		23923B732747AF0400C441AA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +70,6 @@
 		2307D95927329CB9000732DC = {
 			isa = PBXGroup;
 			children = (
-				23923B732747AF0400C441AA /* README.md */,
 				2307D96427329CB9000732DC /* example */,
 				2307D96327329CB9000732DC /* Products */,
 			);
@@ -87,6 +86,7 @@
 		2307D96427329CB9000732DC /* example */ = {
 			isa = PBXGroup;
 			children = (
+				23923B732747AF0400C441AA /* README.md */,
 				2307D9852732C1CB000732DC /* CommandsMenuTableViewController.swift */,
 				2307D97C2732C1CB000732DC /* CommandsTableViewController.swift */,
 				2307D9842732C1CB000732DC /* ConfigurationCommandsViewController.swift */,
