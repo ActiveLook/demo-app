@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LJg-SI-Z9p">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Glasses List-->
+        <scene sceneID="PUW-2a-l2f">
+            <objects>
+                <tableViewController id="GWE-ef-bRz" userLabel="Glasses List" customClass="GlassesTableViewController" customModule="example" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="zqc-cV-naW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GlassesTableViewCell" textLabel="U0N-t8-ooo" style="IBUITableViewCellStyleDefault" id="mIT-fp-1hr">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mIT-fp-1hr" id="64o-jO-cf3">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U0N-t8-ooo">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="GWE-ef-bRz" id="7Nu-8c-tZi"/>
+                            <outlet property="delegate" destination="GWE-ef-bRz" id="x09-yK-l0n"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Glasses List" id="I1i-gd-i7I" userLabel="Glasses List">
+                        <barButtonItem key="rightBarButtonItem" title="Scan" id="YlD-UY-3KC" userLabel="Scan Navigation Item">
+                            <connections>
+                                <action selector="onScanButtonTap:" destination="GWE-ef-bRz" id="dJh-vc-XJk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="scanNavigationItem" destination="YlD-UY-3KC" id="pAu-c3-ZnL"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Obm-Nf-wJK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="515.94202898550725" y="345.53571428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kRU-Bl-NGT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LJg-SI-Z9p" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5ZA-T2-4WG">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GWE-ef-bRz" kind="relationship" relationship="rootViewController" id="1u5-FL-vhL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mQI-uw-VJr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-394.20289855072468" y="345.53571428571428"/>
+        </scene>
+        <!--Notifications-->
+        <scene sceneID="T2S-4b-RIp">
+            <objects>
+                <viewController storyboardIdentifier="NotificationsViewController" id="SmG-gG-UDz" userLabel="Notifications" customClass="NotificationsViewController" customModule="example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J09-EN-iqv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QQC-y3-o94">
+                                <rect key="frame" x="20" y="118" width="374.5" height="130"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="133" translatesAutoresizingMaskIntoConstraints="NO" id="sba-uQ-df1">
+                                        <rect key="frame" x="0.0" y="0.0" width="374.5" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Battery level: unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgl-hw-iaW" userLabel="Battery Level Label">
+                                                <rect key="frame" x="0.0" y="0.0" width="172" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JEY-cC-pjj" userLabel="Battery Level Subscribe Button">
+                                                <rect key="frame" x="305" y="0.0" width="69.5" height="30"/>
+                                                <state key="normal" title="Subscribe"/>
+                                                <connections>
+                                                    <action selector="onSubscribeToBatteryLevelNotificationsButtonTap:" destination="SmG-gG-UDz" eventType="touchUpInside" id="c54-h2-6Kh"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="115" translatesAutoresizingMaskIntoConstraints="NO" id="FDp-Ij-j3R">
+                                        <rect key="frame" x="0.0" y="50" width="374.5" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flow control notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFo-PE-Db4" userLabel="FlowControl Label">
+                                                <rect key="frame" x="0.0" y="0.0" width="190.5" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kvx-tG-Rvi" userLabel="FlowControl Subscribe  Button">
+                                                <rect key="frame" x="305.5" y="0.0" width="69" height="30"/>
+                                                <state key="normal" title="Subscribe"/>
+                                                <connections>
+                                                    <action selector="onSubscribeToFlowControlNotificationsButtonTap:" destination="SmG-gG-UDz" eventType="touchUpInside" id="rCr-tp-Dxn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="82" translatesAutoresizingMaskIntoConstraints="NO" id="mBN-uc-gWW">
+                                        <rect key="frame" x="0.0" y="100" width="374.5" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor interface notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDM-W8-PEO" userLabel="Sensor Interface Label">
+                                                <rect key="frame" x="0.0" y="0.0" width="223" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E15-Pj-sMs" userLabel="Sensor Interface Subscribe Button">
+                                                <rect key="frame" x="305" y="0.0" width="69.5" height="30"/>
+                                                <state key="normal" title="Subscribe"/>
+                                                <connections>
+                                                    <action selector="onSubscribeToSensorInterfaceNotificationsButtonTap:" destination="SmG-gG-UDz" eventType="touchUpInside" id="Q1m-fN-alf"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="onL-FM-pCd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QQC-y3-o94" firstAttribute="top" secondItem="J09-EN-iqv" secondAttribute="top" constant="118" id="9pF-fV-vQF"/>
+                            <constraint firstItem="onL-FM-pCd" firstAttribute="trailing" secondItem="QQC-y3-o94" secondAttribute="trailing" constant="19.5" id="bKP-EU-xqK"/>
+                            <constraint firstItem="onL-FM-pCd" firstAttribute="trailing" secondItem="QQC-y3-o94" secondAttribute="trailing" constant="19.5" id="jsf-qo-Pvx"/>
+                            <constraint firstItem="QQC-y3-o94" firstAttribute="leading" secondItem="J09-EN-iqv" secondAttribute="leading" constant="20" symbolic="YES" id="wCh-sV-jeK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="batteryLevelLabel" destination="bgl-hw-iaW" id="uC5-Im-P88"/>
+                        <outlet property="batteryLevelSubscribeButton" destination="JEY-cC-pjj" id="GTc-BV-h4l"/>
+                        <outlet property="flowControlSubscribeButton" destination="Kvx-tG-Rvi" id="XDK-4p-xpE"/>
+                        <outlet property="sensorInterfaceSubscribeButton" destination="E15-Pj-sMs" id="C9b-yS-6j2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ED1-QS-MHp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1465.217391304348" y="345.53571428571428"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
