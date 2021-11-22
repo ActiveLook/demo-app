@@ -51,7 +51,7 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
     // MARK: - Actions
     
     func readDefaultConfig() {
-        glasses.cfgRead(name: "A.LooK", callback: { (config: ConfigurationElementsInfo) in
+        glasses.cfgRead(name: "ALooK", callback: { (config: ConfigurationElementsInfo) in
             let alert = UIAlertController(title: "Configuration info", message: "Version: \(config.version)\nnb layout: \(config.nbLayout)", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
@@ -75,7 +75,7 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
     }
     
     func setDefaultConfig() {
-        glasses.cfgSet(name: "A.LooK")
+        glasses.cfgSet(name: "ALooK")
     }
     
     func configCount() {
