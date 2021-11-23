@@ -112,20 +112,18 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
          public let isSystem: Bool
          */
         glasses.cfgList(callback: { (configs: [ConfigurationDescription]) in
+            var message = ""
             for config in configs {
-                let alert = UIAlertController(
-                    title: "Configuration List",
-                    message: """
-                            name: \(config.name)\n
-                            size: \(config.size)\n
-                            version: \(config.version)\n
-                            ... (cf ConfigurationDescription)
-                        """,
-                    preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true)
-                print("Name: \(config.name)")
+                message += "name: \(config.name)\nsize: \(config.size)\nversion: \(config.version)\n"
             }
+            print("Configuration List:\n\(message)")
+            
+            let alert = UIAlertController(
+                title: "Configuration List",
+                message: message,
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
         })
     }
 
