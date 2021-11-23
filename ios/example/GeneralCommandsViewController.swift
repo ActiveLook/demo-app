@@ -41,8 +41,7 @@ class GeneralCommandsViewController : CommandsTableViewController {
             "Shift screen to the left",
             "Shift screen to the right",
             "Reset screen shift",
-            "Get settings",
-            "Change glasses name",
+            "Get settings"
         ]
 
         commandActions = [
@@ -60,8 +59,7 @@ class GeneralCommandsViewController : CommandsTableViewController {
             self.shiftToLeft,
             self.shiftToRight,
             self.resetShift,
-            self.getSettings,
-            self.changeGlassesName
+            self.getSettings
         ]
     }
     
@@ -143,9 +141,5 @@ class GeneralCommandsViewController : CommandsTableViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
-    }
-    
-    func changeGlassesName() {
-        glasses.setName("My glasses")
     }
 }

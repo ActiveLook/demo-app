@@ -38,7 +38,7 @@ class GlassesTableViewController: UITableViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         activeLook.stopScanning()
-        super.viewWillDisappear(animated)
+        super.viewDidDisappear(animated)
     }
 
     
