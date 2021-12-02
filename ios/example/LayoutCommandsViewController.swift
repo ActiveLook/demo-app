@@ -35,7 +35,6 @@ class LayoutCommandsViewController : CommandsTableViewController {
             "Clear time layout area",
             "Clear chrono layout area",
             "Change time layout position",
-            "Reset time layout position",
             "Display time layout at bottom of the screen",
             "Save custom layout",
             "Display custom layout",
@@ -53,7 +52,6 @@ class LayoutCommandsViewController : CommandsTableViewController {
             self.clearTimeLayoutArea,
             self.clearChronoLayoutArea,
             self.changeTimeLayoutPosition,
-            self.resetTimeLayoutPosition,
             self.displayTimeAtBottomOfScreen,
             self.saveCustomLayout,
             self.displayCustomLayout,
@@ -99,10 +97,6 @@ class LayoutCommandsViewController : CommandsTableViewController {
     
     func changeTimeLayoutPosition() {
         glasses.layoutPosition(id: 10, x: 10, y: 10)
-    }
-    
-    func resetTimeLayoutPosition() {
-        glasses.layoutPosition(id: 10, x: 20, y: 200)
     }
     
     func displayTimeAtBottomOfScreen() {
