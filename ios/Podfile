@@ -3,5 +3,5 @@ use_frameworks!
 platform :ios, '13.0'
 
 target 'example' do
-  pod 'ActiveLookSDK', :git => 'https://github.com/ActiveLook/ios-sdk.git', :branch => 'rc/4.0.0'
+   pod 'ActiveLookSDK', :git => 'https://github.com/ActiveLook/ios-sdk.git', :tag => '4.1.0'
 end

@@ -15,6 +15,7 @@ limitations under the License.
 
 import Foundation
 import ActiveLookSDK
+import UIKit
 
 class ConfigurationCommandsViewController : CommandsTableViewController {
     
@@ -128,7 +129,13 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
     }
 
     func configSpace() {
-        // TODO Handle callback
-//        glasses.cfgFreeSpace()
+        glasses.cfgFreeSpace(callback: { (freeSpace: FreeSpace) in
+            let alert = UIAlertController(
+                title: "Configuration Free Space",
+                message: "total space: \(freeSpace.totalSize)\nfree space: \(freeSpace.freeSpace)",
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        })
     }
 }

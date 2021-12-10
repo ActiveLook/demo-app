@@ -29,7 +29,6 @@
 		2307D9972732C1CB000732DC /* GeneralCommandsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2307D9882732C1CB000732DC /* GeneralCommandsViewController.swift */; };
 		23923B742747AF0400C441AA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 23923B732747AF0400C441AA /* README.md */; };
 		23923B7F274D646600C441AA /* ConfigDemo-4.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 23923B7D274D646600C441AA /* ConfigDemo-4.0.txt */; };
-		23923B80274D646600C441AA /* ConfigSystem ActiveLookApp-3.7.txt in Resources */ = {isa = PBXBuildFile; fileRef = 23923B7E274D646600C441AA /* ConfigSystem ActiveLookApp-3.7.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +56,6 @@
 		2307D9882732C1CB000732DC /* GeneralCommandsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralCommandsViewController.swift; sourceTree = "<group>"; };
 		23923B732747AF0400C441AA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		23923B7D274D646600C441AA /* ConfigDemo-4.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ConfigDemo-4.0.txt"; sourceTree = "<group>"; };
-		23923B7E274D646600C441AA /* ConfigSystem ActiveLookApp-3.7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ConfigSystem ActiveLookApp-3.7.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				23923B7D274D646600C441AA /* ConfigDemo-4.0.txt */,
-				23923B7E274D646600C441AA /* ConfigSystem ActiveLookApp-3.7.txt */,
 			);
 			path = Assets;
 			sourceTree = SOURCE_ROOT;
@@ -184,7 +181,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23923B80274D646600C441AA /* ConfigSystem ActiveLookApp-3.7.txt in Resources */,
 				2307D97227329CBA000732DC /* LaunchScreen.storyboard in Resources */,
 				2307D96F27329CBA000732DC /* Assets.xcassets in Resources */,
 				23923B742747AF0400C441AA /* README.md in Resources */,
@@ -379,7 +375,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ggr.exampleAL;
+				PRODUCT_BUNDLE_IDENTIFIER = com.microoled.exampleAL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -408,7 +404,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ggr.exampleAL;
+				PRODUCT_BUNDLE_IDENTIFIER = com.microoled.exampleAL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
