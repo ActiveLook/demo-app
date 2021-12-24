@@ -27,6 +27,7 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
         title = "Configuration commands"
         
         commandNames = [
+            "UPLOAD test configuration",
             "Read default configuration",
             "Write test configuration",
             "Read test configuration",
@@ -35,8 +36,10 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
             "Get configuration count",
             "Configuration list",
             "Configuration space available",
+            "DELETE test configuration",
         ]
         commandActions = [
+            self.uploadTestConfig,
             self.readDefaultConfig,
             self.writeTestConfig,
             self.readTestConfig,
@@ -45,11 +48,21 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
             self.configCount,
             self.configList,
             self.configSpace,
+            self.deleteTestConfig,
         ]
     }
     
     
     // MARK: - Actions
+    
+    func uploadTestConfig() {
+        if let filePath = Bundle.main.path(forResource: "ConfigDemo-4.0.txt", ofType: "txt") {
+            do {
+                let cfg = try String(contentsOfFile: filePath)
+                glasses.loadConfiguration(cfg: cfg.components(separatedBy: "\n"))
+            } catch {}
+        }
+    }
     
     func readDefaultConfig() {
         glasses.cfgRead(name: "ALooK", callback: { (config: ConfigurationElementsInfo) in
@@ -137,5 +150,9 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         })
+    }
+    
+    func deleteTestConfig() {
+        glasses.cfgDelete(name: "DemoApp")
     }
 }
