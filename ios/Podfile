@@ -3,5 +3,6 @@ use_frameworks!
 platform :ios, '13.0'
 
 target 'example' do
-   pod 'ActiveLookSDK', :git => 'https://github.com/ActiveLook/ios-sdk.git', :tag => '4.1.0'
+   pod 'ActiveLookSDK', :path => '/Users/geoffreygoutallier/Documents/2.Professionnel/LaChouette/microoled/ActiveLook/SDK/iOS/ios-sdk',
+                        :branch => 'feat/add-swiftlint' # :branch => 'feat/firmware-manager'
 end

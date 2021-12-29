@@ -19,7 +19,6 @@ import ActiveLookSDK
 class GlassesTableViewController: UITableViewController {
     
     @IBOutlet weak var scanNavigationItem: UIBarButtonItem!
-
     
     // MARK: - Private properties
 
@@ -33,14 +32,12 @@ class GlassesTableViewController: UITableViewController {
     private var discoveredGlassesArray: [DiscoveredGlasses] = []
     private var connecting: Bool = false
     
-    
     // MARK: - Life cycle
     
     override func viewDidDisappear(_ animated: Bool) {
         activeLook.stopScanning()
         super.viewDidDisappear(animated)
     }
-
     
     // MARK: - Table view data source
 
@@ -51,14 +48,12 @@ class GlassesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return discoveredGlassesArray.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GlassesTableViewCell", for: indexPath) as UITableViewCell
         cell.textLabel?.text = discoveredGlassesArray[indexPath.row].name
         return cell
     }
-    
     
     // MARK: - Table view delegate
     
@@ -74,7 +69,7 @@ class GlassesTableViewController: UITableViewController {
                 
                 self.connecting = false
                 self.connectionTimer?.invalidate()
-                if (glasses.isFirmwareAtLeast(version: "4.0")) {
+                if glasses.isFirmwareAtLeast(version: "4.0") {
 //                    (glasses.compareFirmwareAtLeast(version: "4.0").rawValue > 0) {
 //                        let alert = UIAlertController(title: "Update application", message: "The glasses firmware is newer. Check the store for an application update.", preferredStyle: .alert)
 //                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -96,14 +91,20 @@ class GlassesTableViewController: UITableViewController {
                     let viewController = CommandsMenuTableViewController(glasses)
                     self.navigationController?.pushViewController(viewController, animated: true)
                 } else {
-                    let alert = UIAlertController(title: "Update glasses firmware", message: "The glasses firmware is not up to date.", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Update glasses firmware",
+                                                  message: "The glasses firmware is not up to date.",
+                                                  preferredStyle: .alert)
+
                     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                     self.present(alert, animated: true)
                 }
             }, onGlassesDisconnected: { [weak self] in
                 guard let self = self else { return }
                 
-                let alert = UIAlertController(title: "Glasses disconnected", message: "Connection to glasses lost", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Glasses disconnected",
+                                              message: "Connection to glasses lost",
+                                              preferredStyle: .alert)
+
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
                     self.navigationController?.popToRootViewController(animated: true)
                 }))
@@ -116,12 +117,14 @@ class GlassesTableViewController: UITableViewController {
                 self.connecting = false
                 self.connectionTimer?.invalidate()
                 
-                let alert = UIAlertController(title: "Error", message: "Connection to glasses failed: \(error.localizedDescription)", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error",
+                                              message: "Connection to glasses failed: \(error.localizedDescription)",
+                                              preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true)
             })
 
-        connectionTimer = Timer.scheduledTimer(withTimeInterval: connectionTimeoutDuration, repeats: false, block: { [weak self] (timer) in
+        connectionTimer = Timer.scheduledTimer(withTimeInterval: connectionTimeoutDuration, repeats: false, block: { [weak self] (_) in
             guard let self = self else { return }
 
             print("connection to glasses timed out")
@@ -135,7 +138,6 @@ class GlassesTableViewController: UITableViewController {
         })
     }
     
-    
     // MARK: - Data
     
     private func addDiscoveredGlasses(_ glasses: DiscoveredGlasses) {
@@ -145,7 +147,6 @@ class GlassesTableViewController: UITableViewController {
         tableView.insertRows(at: [IndexPath(row: self.discoveredGlassesArray.count - 1, section: 0)], with: .automatic)
         tableView.endUpdates()
     }
-    
 
     // MARK: - Scan
     
@@ -159,12 +160,12 @@ class GlassesTableViewController: UITableViewController {
             onGlassesDiscovered: { [weak self] (discoveredGlasses: DiscoveredGlasses) in
                 self?.addDiscoveredGlasses(discoveredGlasses)
 
-            }, onScanError: { [weak self] (error: Error) in
+            }, onScanError: { [weak self] (_: Error) in
                 self?.stopScanning()
             }
         )
 
-        scanTimer = Timer.scheduledTimer(withTimeInterval: scanDuration, repeats: false) { timer in
+        scanTimer = Timer.scheduledTimer(withTimeInterval: scanDuration, repeats: false) { _ in
             self.stopScanning()
         }
     }
@@ -174,7 +175,6 @@ class GlassesTableViewController: UITableViewController {
         scanNavigationItem.title = "Scan"
         scanTimer?.invalidate()
     }
-
     
     // MARK: - Actions
     

@@ -17,8 +17,7 @@ import Foundation
 import UIKit
 import ActiveLookSDK
 
-class GraphicsCommandsViewController : CommandsTableViewController {
-    
+class GraphicsCommandsViewController: CommandsTableViewController {
 
     // MARK: - Life cycle
     
@@ -52,7 +51,6 @@ class GraphicsCommandsViewController : CommandsTableViewController {
             self.setColorMax
         ]
     }
-    
     
     // MARK: - Actions
     

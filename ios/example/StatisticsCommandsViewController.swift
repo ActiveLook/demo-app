@@ -16,8 +16,7 @@ limitations under the License.
 import Foundation
 import ActiveLookSDK
 
-class StatisticsCommandsViewController : CommandsTableViewController {
-    
+class StatisticsCommandsViewController: CommandsTableViewController {
 
     // MARK: - Life cycle
     
@@ -39,7 +38,6 @@ class StatisticsCommandsViewController : CommandsTableViewController {
             self.resetChargingParam
         ]
     }
-    
     
     // MARK: - Actions
     

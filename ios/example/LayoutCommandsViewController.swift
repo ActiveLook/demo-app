@@ -16,8 +16,7 @@ limitations under the License.
 import Foundation
 import ActiveLookSDK
 
-class LayoutCommandsViewController : CommandsTableViewController {
-    
+class LayoutCommandsViewController: CommandsTableViewController {
 
     // MARK: - Life cycle
     
@@ -39,7 +38,7 @@ class LayoutCommandsViewController : CommandsTableViewController {
             "Save custom layout",
             "Display custom layout",
             "Delete custom layout",
-            "Clear",
+            "Clear"
         ]
 
         commandActions = [
@@ -59,7 +58,6 @@ class LayoutCommandsViewController : CommandsTableViewController {
             self.clear
         ]
     }
-    
     
     // MARK: - Actions
     
