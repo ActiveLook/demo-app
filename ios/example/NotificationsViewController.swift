@@ -23,11 +23,9 @@ class NotificationsViewController: UIViewController {
     @IBOutlet weak var flowControlSubscribeButton: UIButton!
     @IBOutlet weak var sensorInterfaceSubscribeButton: UIButton!
 
-
     // MARK: - Public properties
 
     public var glasses: Glasses!
-    
 
     // MARK: - Private properties
 
@@ -36,7 +34,6 @@ class NotificationsViewController: UIViewController {
     private var isSubscribedToBatteryLevelNotifications = false
     private var isSubscribedToFlowControlNotifications = false
     private var isSubscribedToSensorInterfaceNotifications = false
-    
 
     // MARK: - Life cycle
 
@@ -51,7 +48,10 @@ class NotificationsViewController: UIViewController {
             guard let self = self else { return }
             print("glasses disconnected:  \(self.glasses.name)")
 
-            let alert = UIAlertController(title: "Glasses disconnected", message: "Connection to glasses lost", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Glasses disconnected",
+                                          message: "Connection to glasses lost",
+                                          preferredStyle: .alert)
+            
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
                 self.navigationController?.popToRootViewController(animated: true)
             }))
@@ -66,7 +66,6 @@ class NotificationsViewController: UIViewController {
         unsubscribeFromSensorInterfaceNotifications()
     }
 
-
     // MARK: - Private methods
     
     private func updateBatteryLevel(_ batteryLevel: Int) {
@@ -74,7 +73,7 @@ class NotificationsViewController: UIViewController {
     }
     
     private func subscribeToBatteryLevelNotifications() {
-        glasses.subscribeToBatteryLevelNotifications(onBatteryLevelUpdate: { (batteryLevel) -> (Void) in
+        glasses.subscribeToBatteryLevelNotifications(onBatteryLevelUpdate: { (batteryLevel) -> Void in
             print("battery level update: \(batteryLevel)")
             self.updateBatteryLevel(batteryLevel)
         })
@@ -91,7 +90,7 @@ class NotificationsViewController: UIViewController {
     }
     
     private func subscribeToFlowControlNotifications() {
-        glasses.subscribeToFlowControlNotifications(onFlowControlUpdate: { (flowControlState) -> (Void) in
+        glasses.subscribeToFlowControlNotifications(onFlowControlUpdate: { (flowControlState) -> Void in
             print("flow control state update: \(flowControlState)")
         })
 
@@ -107,7 +106,7 @@ class NotificationsViewController: UIViewController {
     }
     
     private func subscribeToSensorInterfaceNotifications() {
-        glasses.subscribeToSensorInterfaceNotifications(onSensorInterfaceTriggered: { () -> (Void) in
+        glasses.subscribeToSensorInterfaceNotifications(onSensorInterfaceTriggered: { () -> Void in
             print("sensor interface triggered")
         })
 
@@ -121,7 +120,6 @@ class NotificationsViewController: UIViewController {
         isSubscribedToSensorInterfaceNotifications = false
         sensorInterfaceSubscribeButton.setTitle("Subscribe", for: .normal)
     }
-
     
     // MARK: - Actions
         

@@ -16,8 +16,7 @@ limitations under the License.
 import Foundation
 import ActiveLookSDK
 
-class PageCommandsViewController : CommandsTableViewController {
-    
+class PageCommandsViewController: CommandsTableViewController {
 
     // MARK: - Life cycle
     
@@ -39,11 +38,10 @@ class PageCommandsViewController : CommandsTableViewController {
         ]
     }
     
-    
     // MARK: - Actions
     
     func listPages() {
-        glasses.pageList() { (pages: [Int]) in
+        glasses.pageList { (pages: [Int]) in
             let alert = UIAlertController(title: "Page count", message: "\(pages.count)   ", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)

@@ -19,7 +19,6 @@ import ActiveLookSDK
 class CommandsMenuTableViewController: CommandsTableViewController {
 
     // MARK: - Life cycle
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +55,7 @@ class CommandsMenuTableViewController: CommandsTableViewController {
             self.showNotificationsViewController
         ]
         
-        glasses.subscribeToFlowControlNotifications { (flowControlState) -> (Void) in
+        glasses.subscribeToFlowControlNotifications { (flowControlState) -> Void in
             print("flow control state update: \(flowControlState)")
         }
     }
@@ -70,7 +69,6 @@ class CommandsMenuTableViewController: CommandsTableViewController {
         
         super.viewDidDisappear(animated)
     }
-    
     
     // MARK: - Navigation
     
@@ -120,7 +118,8 @@ class CommandsMenuTableViewController: CommandsTableViewController {
 
     func showNotificationsViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let viewController = storyboard.instantiateViewController(identifier: "NotificationsViewController") as? NotificationsViewController {
+        if let viewController = storyboard.instantiateViewController(identifier: "NotificationsViewController")
+            as? NotificationsViewController {
             viewController.glasses = glasses
             navigationController?.pushViewController(viewController, animated: true)
         }

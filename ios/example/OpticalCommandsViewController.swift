@@ -17,8 +17,7 @@ import Foundation
 import UIKit
 import ActiveLookSDK
 
-class OpticalCommandsViewController : CommandsTableViewController {
-    
+class OpticalCommandsViewController: CommandsTableViewController {
 
     // MARK: - Life cycle
     
@@ -34,7 +33,7 @@ class OpticalCommandsViewController : CommandsTableViewController {
             "Enable auto brightness adjustment",
             "Disable auto brightness adjustment",
             "Subscribe to gesture notifications",
-            "Unsubscribe from gesture notifications",
+            "Unsubscribe from gesture notifications"
         ]
 
         commandActions = [
@@ -48,7 +47,6 @@ class OpticalCommandsViewController : CommandsTableViewController {
             self.unsubscribeFromSensorInterfaceNotifications
         ]
     }
-    
     
     // MARK: - Actions
     
@@ -77,7 +75,7 @@ class OpticalCommandsViewController : CommandsTableViewController {
     }
 
     func subscribeToSensorInterfaceNotifications() {
-        glasses.subscribeToSensorInterfaceNotifications(onSensorInterfaceTriggered: { () -> (Void) in
+        glasses.subscribeToSensorInterfaceNotifications(onSensorInterfaceTriggered: { () -> Void in
             print("sensor interface triggered !")
         })
     }

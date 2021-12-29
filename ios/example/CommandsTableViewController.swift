@@ -17,7 +17,6 @@ import UIKit
 import ActiveLookSDK
 
 class CommandsTableViewController: UITableViewController {
-
     
     // MARK: - Properties
 
@@ -25,7 +24,6 @@ class CommandsTableViewController: UITableViewController {
 
     var commandNames: [String] = [] // List of command names to set in subclasses
     var commandActions: [() -> Void] = [] // List of command actions to set in subclasses
-    
     
     // MARK: - Life cycle
     
@@ -43,7 +41,6 @@ class CommandsTableViewController: UITableViewController {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultCell")
         if glasses == nil { fatalError("No glasses set") }
     }
-
     
     // MARK: - Table view data source
 
@@ -61,7 +58,6 @@ class CommandsTableViewController: UITableViewController {
         return cell
     }
     
-    
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -69,7 +65,6 @@ class CommandsTableViewController: UITableViewController {
         action()
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
     
     // MARK: - Actions (Available to all subclasses)
     

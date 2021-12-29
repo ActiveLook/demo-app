@@ -17,8 +17,7 @@ import Foundation
 import ActiveLookSDK
 import UIKit
 
-class ConfigurationCommandsViewController : CommandsTableViewController {
-    
+class ConfigurationCommandsViewController: CommandsTableViewController {
 
     // MARK: - Life cycle
     
@@ -36,7 +35,7 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
             "Get configuration count",
             "Configuration list",
             "Configuration space available",
-            "DELETE test configuration",
+            "DELETE test configuration"
         ]
         commandActions = [
             self.uploadTestConfig,
@@ -48,25 +47,21 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
             self.configCount,
             self.configList,
             self.configSpace,
-            self.deleteTestConfig,
+            self.deleteTestConfig
         ]
     }
-    
     
     // MARK: - Actions
     
     func uploadTestConfig() {
-        if let filePath = Bundle.main.path(forResource: "ConfigDemo-4.0.txt", ofType: "txt") {
-            do {
-                let cfg = try String(contentsOfFile: filePath)
-                glasses.loadConfiguration(cfg: cfg.components(separatedBy: "\n"))
-            } catch {}
-        }
+        self.uploadConfig(named: "ConfigDemo-4.0")
     }
-    
+
     func readDefaultConfig() {
         glasses.cfgRead(name: "ALooK", callback: { (config: ConfigurationElementsInfo) in
-            let alert = UIAlertController(title: "Configuration info", message: "Version: \(config.version)\nnb layout: \(config.nbLayout)", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Configuration info",
+                                          message: "Version: \(config.version)\nnb layout: \(config.nbLayout)",
+                                          preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         })
@@ -78,7 +73,9 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
     
     func readTestConfig() {
         glasses.cfgRead(name: "DemoApp", callback: { (config: ConfigurationElementsInfo) in
-            let alert = UIAlertController(title: "Configuration info", message: "Version: \(config.version)\nnb layout: \(config.nbLayout)", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Configuration info",
+                                          message: "Version: \(config.version)\nnb layout: \(config.nbLayout)",
+                                          preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         })
@@ -98,33 +95,16 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
             if number > 1 {
                 plural = ("are", "s")
             }
-            let alert = UIAlertController(title: "Configuration Number", message: "There \(plural.toBe) \(number) config\(plural.name) on the glasses", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Configuration Number",
+                                          message: "There \(plural.toBe) \(number) config\(plural.name) on the glasses",
+                                          preferredStyle: .alert)
+            
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         })
     }
 
     func configList() {
-        // TODO Handle callback
-        /*
-         /// The configuration name
-         public let name: String
-         
-         /// The configuration size
-         public let size: UInt32
-         
-         /// The configuration version
-         public let version: UInt32
-         
-         /// The configuration usage count
-         public let usageCnt: UInt8
-         
-         /// The configuration install count
-         public let installCnt: UInt8
-         
-         /// The configuration flag for system configuration
-         public let isSystem: Bool
-         */
         glasses.cfgList(callback: { (configs: [ConfigurationDescription]) in
             var message = ""
             for config in configs {
@@ -151,8 +131,17 @@ class ConfigurationCommandsViewController : CommandsTableViewController {
             self.present(alert, animated: true)
         })
     }
-    
+
     func deleteTestConfig() {
         glasses.cfgDelete(name: "DemoApp")
+    }
+
+    func uploadConfig(named filename: String) {
+        if let filePath = Bundle.main.path(forResource: filename, ofType: "txt") {
+            do {
+                let cfg = try String(contentsOfFile: filePath)
+                glasses.loadConfiguration(cfg: cfg.components(separatedBy: "\n"))
+            } catch {}
+        }
     }
 }

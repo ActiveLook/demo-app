@@ -17,8 +17,7 @@ import Foundation
 import UIKit
 import ActiveLookSDK
 
-class GeneralCommandsViewController : CommandsTableViewController {
-    
+class GeneralCommandsViewController: CommandsTableViewController {
 
     // MARK: - Life cycle
     
@@ -63,7 +62,6 @@ class GeneralCommandsViewController : CommandsTableViewController {
         ]
     }
     
-    
     // MARK: - Actions
     
     func powerOn() {
@@ -103,11 +101,16 @@ class GeneralCommandsViewController : CommandsTableViewController {
             self.present(alert, animated: true)
         }
     }
-    
+
     func getVersion() {
         glasses.vers { glassesVersion in
-            let v = glassesVersion
-            let message = "Firmware version: \(v.firmwareVersion)\nManufaturingYear: \(v.manufacturingYear)\nManufacturingWeek: \(v.manufacturingWeek)\nSerial Number: \(v.serialNumber)"
+            let gv = glassesVersion
+            let message = """
+                Firmware version: \(gv.firmwareVersion)
+                ManufaturingYear: \(gv.manufacturingYear)
+                ManufacturingWeek: \(gv.manufacturingWeek)
+                Serial Number: \(gv.serialNumber)
+                """
 
             let alert = UIAlertController(title: "Glasses version", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -130,12 +133,17 @@ class GeneralCommandsViewController : CommandsTableViewController {
     func resetShift() {
         glasses.shift(x: 0, y: 0)
     }
-    
+
     func getSettings() {
         glasses.settings { glassesSettings in
-            let s = glassesSettings
-
-            let message = "X shift: \(s.xShift)\ny shift: \(s.yShift)\nLuma: \(s.luma)\nGesture detection enabled: \(s.gestureDetectionEnabled)\nBrightness adjustment enabled: \(s.brightnessAdjustmentEnabled)"
+            let gs = glassesSettings
+            let message = """
+                "X shift: \(gs.xShift)\n
+                y shift: \(gs.yShift)\n
+                Luma: \(gs.luma)\n
+                Gesture detection enabled: \(gs.gestureDetectionEnabled)\n
+                Brightness adjustment enabled: \(gs.brightnessAdjustmentEnabled)
+                """
 
             let alert = UIAlertController(title: "Glasses settings", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

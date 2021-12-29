@@ -16,8 +16,7 @@ limitations under the License.
 import Foundation
 import ActiveLookSDK
 
-class GaugeCommandsViewController : CommandsTableViewController {
-    
+class GaugeCommandsViewController: CommandsTableViewController {
 
     // MARK: - Life cycle
     
@@ -29,7 +28,7 @@ class GaugeCommandsViewController : CommandsTableViewController {
             "Create gauge",
             "Display gauge at 30%",
             "Display gauge at 70%",
-            "Display gauge at 100%",
+            "Display gauge at 100%"
         ]
         commandActions = [
             self.createGauge,
@@ -38,7 +37,6 @@ class GaugeCommandsViewController : CommandsTableViewController {
             self.displayGauge100
         ]
     }
-    
     
     // MARK: - Actions
     
