@@ -17,8 +17,7 @@ import Foundation
 import UIKit
 import ActiveLookSDK
 
-class DisplayCommandsViewController : CommandsTableViewController {
-    
+class DisplayCommandsViewController: CommandsTableViewController {
 
     // MARK: - Life cycle
     
@@ -29,7 +28,6 @@ class DisplayCommandsViewController : CommandsTableViewController {
         commandNames = ["Low luminance", "Medium luminance", "High luminance"]
         commandActions = [self.lowLuma, self.mediumLuma, self.highLuma]
     }
-    
     
     // MARK: - Actions
     
