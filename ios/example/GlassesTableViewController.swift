@@ -28,12 +28,34 @@ class GlassesTableViewController: UITableViewController {
     private var scanTimer: Timer?
     private var connectionTimer: Timer?
     
-    private var activeLook: ActiveLookSDK = ActiveLookSDK.shared
+    private var activeLook: ActiveLookSDK!
     private var discoveredGlassesArray: [DiscoveredGlasses] = []
     private var connecting: Bool = false
     
     // MARK: - Life cycle
-    
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+
+        do {
+            activeLook = try ActiveLookSDK.shared(token: "",
+                                                  onUpdateStartCallback: {
+                print("Update started!")
+            },
+                                                  onUpdateProgressCallback: {
+                print("Update progressed...")
+            },
+                                                  onUpdateSuccessCallback: {
+                print("Update succeeded!!!")
+            },
+                                                  onUpdateFailureCallback: {
+                print("Update failed =(")
+            })
+        } catch {
+            print("ActiveLook's SDK could not be initialized")
+        }
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         activeLook.stopScanning()
         super.viewDidDisappear(animated)

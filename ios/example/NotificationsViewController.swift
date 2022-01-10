@@ -28,8 +28,6 @@ class NotificationsViewController: UIViewController {
     public var glasses: Glasses!
 
     // MARK: - Private properties
-
-    private var activeLook: ActiveLookSDK = ActiveLookSDK.shared
     
     private var isSubscribedToBatteryLevelNotifications = false
     private var isSubscribedToFlowControlNotifications = false
