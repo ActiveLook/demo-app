@@ -23,7 +23,10 @@ class GlassesTableViewController: UITableViewController {
     // MARK: - Private properties
 
     private let scanDuration: TimeInterval = 10.0
-    private let connectionTimeoutDuration: TimeInterval = 5.0
+
+#warning("SET TIMEOUT BACK TO 100.0")
+// TODO: + ADD METHOD TO DISABLE TIMOUT WHILE UPDATE.... ? NO BECAUSE GLASSES ARE CONNECTED... SO HOW DOES IT KNOW IT????
+    private let connectionTimeoutDuration: TimeInterval = 10000.0
     
     private var scanTimer: Timer?
     private var connectionTimer: Timer?
@@ -38,7 +41,7 @@ class GlassesTableViewController: UITableViewController {
         super.init(coder: coder)
 
         do {
-            activeLook = try ActiveLookSDK.shared(token: "",
+            activeLook = try ActiveLookSDK.shared(token: "bdjZ3ulWitvUzVtUHevbll1AiOANEfPYsv5u6RaGcxk",
                                                   onUpdateStartCallback: {
                 print("Update started!")
             },
@@ -54,6 +57,10 @@ class GlassesTableViewController: UITableViewController {
         } catch {
             print("ActiveLook's SDK could not be initialized")
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        startScanning()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -101,15 +108,14 @@ class GlassesTableViewController: UITableViewController {
                     // TO UPLOAD CONFIG, ADD YOUR CONFIG.TXT FILE TO THE PROJECT,
                     // THEN UNCOMMENT THE FOLLOWING BLOCK /*...*/
                     // AND FINALLY REPLACE THE RESSOURCE NAME WITH YOUR CONFIG'S NAME
-/*                         if let filePath = Bundle.main.path(forResource: "ConfigDemo-4.0.txt", ofType: "txt") {
+/*                    if let filePath = Bundle.main.path(forResource: "ConfigDemo-4.0.txt", ofType: "txt") {
                              do {
                                  let cfg = try String(contentsOfFile: filePath)
                                  glasses.loadConfiguration(cfg: cfg.components(separatedBy: "\n"))
                              } catch {}
+                    }
 */
-                    
-//                         }
-//                    }
+//                 }
                     let viewController = CommandsMenuTableViewController(glasses)
                     self.navigationController?.pushViewController(viewController, animated: true)
                 } else {
@@ -143,7 +149,10 @@ class GlassesTableViewController: UITableViewController {
                                               message: "Connection to glasses failed: \(error.localizedDescription)",
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true)
+
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true)
+                }
             })
 
         connectionTimer = Timer.scheduledTimer(withTimeInterval: connectionTimeoutDuration, repeats: false, block: { [weak self] (_) in

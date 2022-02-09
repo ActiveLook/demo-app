@@ -3,7 +3,7 @@ use_frameworks!
 platform :ios, '13.0'
 
 target 'example' do
-   pod 'ActiveLookSDK', :path => '/Users/geoffreygoutallier/Documents/2.Professionnel/LaChouette/microoled/ActiveLook/SDK/iOS/ios-sdk',
-                        :branch => 'feat/firmware-manager'
-#   pod 'ActiveLookSDK', :git => 'https://github.com/ActiveLook/ios-sdk.git', :tag => '4.1.0'
+   pod 'ActiveLookSDK', 
+	:git => 'https://github.com/ActiveLook/ios-sdk.git', 
+	:branch => 'feat/firmware-update'
 end
