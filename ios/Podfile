@@ -3,7 +3,7 @@ use_frameworks!
 platform :ios, '13.0'
 
 target 'example' do
-   pod 'ActiveLookSDK', 
-	:git => 'https://github.com/ActiveLook/ios-sdk.git', 
-	:branch => 'feat/firmware-update'
+  pod 'ActiveLookSDK',
+    :git => 'https://github.com/ActiveLook/ios-sdk.git',
+    :branch => 'feat/firmware-update-create-firmware-updater'
 end
