@@ -50,6 +50,7 @@ class ConfigurationCommandsViewController: CommandsTableViewController {
             self.deleteTestConfig
         ]
     }
+
     
     // MARK: - Actions
     

@@ -24,9 +24,9 @@ class GlassesTableViewController: UITableViewController {
 
     private let scanDuration: TimeInterval = 10.0
 
-#warning("SET TIMEOUT BACK TO 100.0")
-// TODO: + ADD METHOD TO DISABLE TIMOUT WHILE UPDATE.... ? NO BECAUSE GLASSES ARE CONNECTED... SO HOW DOES IT KNOW IT????
-    private let connectionTimeoutDuration: TimeInterval = 10000.0
+    var config: String = ""
+
+    private let connectionTimeoutDuration: TimeInterval = 500.0
     
     private var scanTimer: Timer?
     private var connectionTimer: Timer?
@@ -42,16 +42,16 @@ class GlassesTableViewController: UITableViewController {
 
         do {
             activeLook = try ActiveLookSDK.shared(token: "bdjZ3ulWitvUzVtUHevbll1AiOANEfPYsv5u6RaGcxk",
-                                                  onUpdateStartCallback: {
+                                                  onUpdateStartCallback: { _ in
                 print("Update started!")
             },
-                                                  onUpdateProgressCallback: {
-                print("Update progressed...")
+                                                  onUpdateProgressCallback: { update in
+                print("Updating... state: \(update.getState()) \(update.getProgress())")
             },
-                                                  onUpdateSuccessCallback: {
-                print("Update succeeded!!!")
+                                                  onUpdateSuccessCallback: { update in
+                print("Update succeeded: \(update.getState()) progress: \(update.getProgress())")
             },
-                                                  onUpdateFailureCallback: {
+                                                  onUpdateFailureCallback: { _ in
                 print("Update failed =(")
             })
         } catch {
@@ -85,7 +85,7 @@ class GlassesTableViewController: UITableViewController {
     }
     
     // MARK: - Table view delegate
-    
+    // swiftlint:disable function_body_length
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if connecting { return }
         connecting = true
@@ -99,25 +99,18 @@ class GlassesTableViewController: UITableViewController {
                 self.connecting = false
                 self.connectionTimer?.invalidate()
                 if glasses.isFirmwareAtLeast(version: "4.0") {
-//                    (glasses.compareFirmwareAtLeast(version: "4.0").rawValue > 0) {
-//                        let alert = UIAlertController(title: "Update application", message: "The glasses firmware is newer. Check the store for an application update.", preferredStyle: .alert)
-//                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                        self.present(alert, animated: true)
-//                         } else {
-                    
-                    // TO UPLOAD CONFIG, ADD YOUR CONFIG.TXT FILE TO THE PROJECT,
-                    // THEN UNCOMMENT THE FOLLOWING BLOCK /*...*/
-                    // AND FINALLY REPLACE THE RESSOURCE NAME WITH YOUR CONFIG'S NAME
-/*                    if let filePath = Bundle.main.path(forResource: "ConfigDemo-4.0.txt", ofType: "txt") {
-                             do {
-                                 let cfg = try String(contentsOfFile: filePath)
-                                 glasses.loadConfiguration(cfg: cfg.components(separatedBy: "\n"))
-                             } catch {}
-                    }
-*/
-//                 }
+
+// TO UPLOAD CONFIG, ADD YOUR CONFIG.TXT FILE TO THE PROJECT,
+// THEN UNCOMMENT THE FOLLOWING BLOCK /*...*/
+// AND FINALLY REPLACE THE RESSOURCE NAME WITH YOUR CONFIG'S NAME
+// if let filePath = Bundle.main.path(forResource: "ConfigDemo-4.0", ofType: "txt") {
+//         do {
+//             let cfg = try String(contentsOfFile: filePath)
+//             glasses.loadConfiguration(cfg: cfg.components(separatedBy: "\n"))
+//         } catch {}
+// }
                     let viewController = CommandsMenuTableViewController(glasses)
-                    self.navigationController?.pushViewController(viewController, animated: true)
+                    self.navigationController?.pushViewController(viewController, animated: true) 
                 } else {
                     let alert = UIAlertController(title: "Update glasses firmware",
                                                   message: "The glasses firmware is not up to date.",
@@ -168,6 +161,7 @@ class GlassesTableViewController: UITableViewController {
             self.tableView.deselectRow(at: indexPath, animated: true)
         })
     }
+    // swiftlint:enable function_body_length
     
     // MARK: - Data
     
