@@ -28,6 +28,7 @@ class GraphicsCommandsViewController: CommandsTableViewController {
         commandNames = [
             "Draw point",
             "Draw line",
+            "Draw polyline (3pts)",
             "Draw circle",
             "Draw square",
             "Draw full circle",
@@ -41,6 +42,7 @@ class GraphicsCommandsViewController: CommandsTableViewController {
         commandActions = [
             self.drawPoint,
             self.drawLine,
+            self.drawPolyline,
             self.drawCircle,
             self.drawSquare,
             self.drawFullCircle,
@@ -63,7 +65,18 @@ class GraphicsCommandsViewController: CommandsTableViewController {
         glasses.clear()
         glasses.line(x0: 102, x1: 202, y0: 128, y1: 128)
     }
-    
+
+    func drawPolyline() {
+        
+        var points: [(UInt16, UInt16)] = []
+
+        points.append((x: 50, y: 50))
+        points.append((x: 50, y: 200))
+        points.append((x: 250, y: 200))
+
+        glasses.polyline(points: points)
+    }
+
     func drawCircle() {
         glasses.clear()
         glasses.circ(x: 152, y: 128, radius: 50)
