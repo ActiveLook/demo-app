@@ -24,6 +24,12 @@ class GeneralCommandsViewController: CommandsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "General commands"
+
+        var saveSGCmdName = "Save SerializedGlasses"
+
+        if ( UserDefaults.standard.object( forKey: "SerializedGlasses" ) != nil ) {
+            saveSGCmdName = "Remove SerializedGlasses"
+        }
         
         commandNames = [
             "Power on",
@@ -40,7 +46,8 @@ class GeneralCommandsViewController: CommandsTableViewController {
             "Shift screen to the left",
             "Shift screen to the right",
             "Reset screen shift",
-            "Get settings"
+            "Get settings",
+            saveSGCmdName
         ]
 
         commandActions = [
@@ -58,7 +65,8 @@ class GeneralCommandsViewController: CommandsTableViewController {
             self.shiftToLeft,
             self.shiftToRight,
             self.resetShift,
-            self.getSettings
+            self.getSettings,
+            self.saveSerializedGlasses
         ]
     }
     
@@ -149,5 +157,64 @@ class GeneralCommandsViewController: CommandsTableViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
+    }
+
+    func saveSerializedGlasses() {
+
+        let toggleCmdEntryName: () -> Void = {
+
+            guard let index = self.commandNames.firstIndex(where: { $0.hasSuffix("SerializedGlasses") }) else {
+                fatalError("No more `[...] SerializedGlasses` entry in commands.")
+            }
+
+            enum titleAction: String {
+                case Save
+                case Delete
+            }
+
+            var str = self.commandNames[index]
+            var compts = str.components(separatedBy: " ")
+
+            if ( compts[0].contains(titleAction.Save.rawValue) ) {
+                compts[0] = titleAction.Delete.rawValue
+            } else {
+                compts[0] = titleAction.Save.rawValue
+            }
+            str = compts.joined(separator: " ")
+            self.commandNames[index] = str
+
+            // TODO: reload row, not whole table!
+            self.tableView.reloadData()
+        }
+
+        if ( UserDefaults.standard.object(forKey: "SerializedGlasses") != nil ) {
+            UserDefaults.standard.removeObject(forKey: "SerializedGlasses")
+        } else {
+            do {
+                let sg: SerializedGlasses = try glasses.getSerializedGlasses()
+                UserDefaults.standard.set(sg, forKey: "SerializedGlasses")
+
+                let message = """
+                To test auto-reconnect:
+                    1. Kill the app
+                    2. Relaunch the app
+                -> It will reconnect automatically
+
+                To stop auto-reconnect, `Delete SerializedGlasses`.
+                """
+                let alert = UIAlertController(title: "Usage",
+                                              message: message,
+                                              preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                    self.navigationController?.popToRootViewController(animated: true)
+                }))
+
+                self.navigationController?.present(alert, animated: true)
+            } catch {
+                print(error)
+            }
+        }
+        toggleCmdEntryName()
     }
 }
