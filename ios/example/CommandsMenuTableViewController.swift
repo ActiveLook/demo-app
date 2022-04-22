@@ -64,7 +64,11 @@ class CommandsMenuTableViewController: CommandsTableViewController {
         
         // Disconnect glasses when navigating back to list
         if navigationController?.viewControllers.firstIndex(of: self) == nil {
-            glasses.disconnect()
+            do {
+                try glasses.disconnect()
+            } catch {
+                print("error disconnecting glasses")
+            }
         }
         
         super.viewDidDisappear(animated)
