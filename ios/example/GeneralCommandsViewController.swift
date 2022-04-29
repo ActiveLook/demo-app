@@ -20,7 +20,7 @@ import ActiveLookSDK
 class GeneralCommandsViewController: CommandsTableViewController {
 
     // MARK: - Life cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "General commands"
@@ -167,18 +167,13 @@ class GeneralCommandsViewController: CommandsTableViewController {
                 fatalError("No more `[...] SerializedGlasses` entry in commands.")
             }
 
-            enum titleAction: String {
-                case Save
-                case Delete
-            }
-
             var str = self.commandNames[index]
             var compts = str.components(separatedBy: " ")
 
-            if ( compts[0].contains(titleAction.Save.rawValue) ) {
-                compts[0] = titleAction.Delete.rawValue
+            if ( compts[0].contains("Save") ) {
+                compts[0] = "Remove"
             } else {
-                compts[0] = titleAction.Save.rawValue
+                compts[0] = "Save"
             }
             str = compts.joined(separator: " ")
             self.commandNames[index] = str
@@ -196,9 +191,9 @@ class GeneralCommandsViewController: CommandsTableViewController {
 
                 let message = """
                 To test auto-reconnect:
-                    1. Kill the app
-                    2. Relaunch the app
-                -> It will reconnect automatically
+                    1. `OK` will kill the app
+                    2. Manually relaunch it
+                => It will reconnect automatically.
 
                 To stop auto-reconnect, `Delete SerializedGlasses`.
                 """
@@ -207,7 +202,10 @@ class GeneralCommandsViewController: CommandsTableViewController {
                                               preferredStyle: .alert)
 
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                    self.navigationController?.popToRootViewController(animated: true)
+                    exit(1)
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
+                    return
                 }))
 
                 self.navigationController?.present(alert, animated: true)
