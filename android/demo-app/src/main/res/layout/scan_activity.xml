@@ -19,6 +19,12 @@
             android:backgroundTint="@color/warning"
             android:text="@string/stop_scan" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+
         <ListView
             android:id="@+id/scan_results"
             android:layout_width="match_parent"
