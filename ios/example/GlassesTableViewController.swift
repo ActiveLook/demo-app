@@ -13,6 +13,13 @@ limitations under the License.
  
 */
 
+/// ~~have unintentional disconnect by default until app returns glasses?~~
+/// TODO: ~~-> if onGlassesDisconnected() and onUpdateProgressCallback().update.getState == UPDATING_FIRMWARE -> Do nothing...~~✅
+
+// TODO: how to implement timer so that it is usefull AND accounts for the upgrade?
+// TODO: -> start timer after connect() invocation, and update it accordingly during update using init callbacks ;)
+
+
 import UIKit
 import ActiveLookSDK
 
@@ -22,15 +29,12 @@ class GlassesTableViewController: UITableViewController {
     
     // MARK: - Private properties
 
-    private let scanDuration: TimeInterval = 10.0
-
-    var config: String = ""
-
-    private let connectionTimeoutDuration: TimeInterval = 500.0
-    
     private var scanTimer: Timer?
     private var connectionTimer: Timer?
-    
+
+    private let scanDuration: TimeInterval = 10.0
+    private let connectionTimeoutDuration: TimeInterval = 10.0
+
     private var activeLook: ActiveLookSDK!
     private var discoveredGlassesArray: [DiscoveredGlasses] = []
     private var connecting: Bool = false
@@ -39,6 +43,7 @@ class GlassesTableViewController: UITableViewController {
     private var onGlassesDisconnected: (() -> Void)?
     private var onConnectionError: ((Error) -> Void)?
 
+    private var glassesUpdate: SdkGlassesUpdate?
 
     // MARK: - Life cycle
 
@@ -49,18 +54,37 @@ class GlassesTableViewController: UITableViewController {
         format.dateFormat = "mm:ss: SSS"
 
         do {
-            activeLook = try ActiveLookSDK.shared(token: "bdjZ3ulWitvUzVtUHevbll1AiOANEfPYsv5u6RaGcxk",
-                                                  onUpdateStartCallback: { _ in
+//            activeLook = try ActiveLookSDK.shared(token: "v_K14H7SwxMizYH9kpwVb2pAgeCoeoeUkkO-81B2bEA",
+            activeLook = try ActiveLookSDK.shared(token: "wtf",
+                                                  onUpdateStartCallback: { update in
                 print("Update started!")
+                self.glassesUpdate = update
+
+                // increment connectionTimer timeout to account for update process. 5 min is plenty!
+                self.resetTimer(5*60)
+            },
+                                                  onUpdateAvailableCallback: { update in
+                let decision = true
+                print("Update available, returning \(decision.description)")
+                return decision
             },
                                                   onUpdateProgressCallback: { update in
                 print("Updating: \(update.getProgress()) – \(format.string(from: Date())) state : \(update.getState())")
+                self.glassesUpdate = update
             },
                                                   onUpdateSuccessCallback: { update in
                 print("Update succeeded: \(update.getState()) progress: \(update.getProgress())")
+                self.glassesUpdate = nil
             },
-                                                  onUpdateFailureCallback: { _ in
-                print("Update failed =(")
+                                                  onUpdateFailureCallback: { update in
+                print("Update failed =( – \(update.getState()) - \(String(describing: update.getBatteryLevel()))")
+                self.glassesUpdate = update
+                if update.getState() == .ERROR_UPDATE_FAIL_LOW_BATTERY {
+                    // increment connectionTimer timeout to account for battery level callback process. By design, it is c. 30 sec
+                    self.resetTimer(40)
+                }
+
+                // TODO: disable timer if glasses failed!
             })
         } catch {
             print("ActiveLook's SDK could not be initialized")
@@ -72,42 +96,50 @@ class GlassesTableViewController: UITableViewController {
             guard let self = self else { return }
             print("Glasses connected")
             self.connecting = false
+            self.glassesUpdate = nil
             self.connectionTimer?.invalidate()
             let viewController = CommandsMenuTableViewController(glasses)
             self.navigationController?.pushViewController(viewController, animated: true)
         }
 
         onGlassesDisconnected = { [weak self] in
-                guard let self = self else { return }
+            guard let self = self else { return }
 
-                let alert = UIAlertController(title: "Glasses disconnected",
-                                              message: "Connection to glasses lost",
-                                              preferredStyle: .alert)
+            guard self.glassesUpdate == nil else { return }
 
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                    self.navigationController?.popToRootViewController(animated: true)
-                }))
+            let alert = UIAlertController(title: "Glasses disconnected",
+                                          message: "Connection to glasses lost",
+                                          preferredStyle: .alert)
 
-                self.navigationController?.present(alert, animated: true)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                self.navigationController?.popToRootViewController(animated: true)
+            }))
 
-            }
+            self.navigationController?.present(alert, animated: true)
+
+        }
+
         onConnectionError = { [weak self] (error: Error) in
-                guard let self = self else { return }
+            guard let self = self else { return }
 
-                self.connecting = false
+            guard self.glassesUpdate == nil else { return }
 
-                let alert = UIAlertController(title: "Error",
-                                              message: "Connection to glasses failed: \(error.localizedDescription)",
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.connecting = false
+            self.connectionTimer?.invalidate()
 
-                DispatchQueue.main.async {
-                    self.present(alert, animated: true)
-                }
+            let alert = UIAlertController(title: "Error",
+                                          message: "Connection to glasses failed: \(error.localizedDescription)",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+            DispatchQueue.main.async {
+                self.present(alert, animated: true)
+            }
         }
     }
 
     override func viewDidAppear(_ animated: Bool) {
+//        UserDefaults.standard.removeObject(forKey: "SerializedGlasses")
         guard let sg = (UserDefaults.standard.object(forKey: "SerializedGlasses") as? SerializedGlasses) else {
             startScanning()
             return
@@ -154,18 +186,7 @@ class GlassesTableViewController: UITableViewController {
             onGlassesDisconnected: onGlassesDisconnected!,
             onConnectionError: onConnectionError!)
 
-//        connectionTimer = Timer.scheduledTimer(withTimeInterval: connectionTimeoutDuration, repeats: false, block: { [weak self] (_) in
-//            guard let self = self else { return }
-//
-//            print("connection to glasses timed out")
-//            self.connecting = false
-//
-//            let alert = UIAlertController(title: "Error", message: "The connection to the glasses timed out", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//            self.present(alert, animated: true)
-//
-//            self.tableView.deselectRow(at: indexPath, animated: true)
-//        })
+        resetTimer()
     }
     
     // MARK: - Data
@@ -204,6 +225,37 @@ class GlassesTableViewController: UITableViewController {
         activeLook.stopScanning()
         scanNavigationItem.title = "Scan"
         scanTimer?.invalidate()
+    }
+
+    // MARK: - Helpers
+
+    private func resetTimer(_ value: TimeInterval? = nil) {
+
+        if let _ = connectionTimer?.isValid { self.connectionTimer?.invalidate() }
+
+        var timeInterval: TimeInterval
+        if value != nil {
+            timeInterval = value!
+        } else {
+            timeInterval = connectionTimeoutDuration
+        }
+
+        connectionTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false, block: { [weak self] (_) in
+            guard let self = self else { return }
+
+            print("connection to glasses timed out")
+            self.connecting = false
+
+            let alert = UIAlertController(title: "Error", message: "The connection to the glasses timed out", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+
+            self.tableView.reloadData()
+        })
+    }
+
+    private func isUpdating() -> Bool {
+        return ( glassesUpdate != nil )
     }
     
     // MARK: - Actions
