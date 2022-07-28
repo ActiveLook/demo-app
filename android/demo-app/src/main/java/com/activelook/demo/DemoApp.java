@@ -1,6 +1,7 @@
 package com.activelook.demo;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.core.util.Consumer;
 import androidx.core.util.Predicate;
@@ -12,6 +13,7 @@ public class DemoApp extends Application {
 
     private Sdk alsdk;
     private boolean connected;
+    private String token = BuildConfig.ACTIVELOOK_SDK_TOKEN;
     private Consumer<GlassesUpdate> onUpdateStart;
     private Predicate<GlassesUpdate> onUpdateAvailableCallback;
     private Consumer<GlassesUpdate> onUpdateProgress;
@@ -22,14 +24,24 @@ public class DemoApp extends Application {
     public void onCreate() {
         super.onCreate();
         this.connected = false;
-        this.onUpdateStart = null;
-        this.onUpdateAvailableCallback = null;
-        this.onUpdateProgress = null;
-        this.onUpdateSuccess = null;
-        this.onUpdateError = null;
-        this.alsdk = Sdk.init(
-            this.getApplicationContext(),
-            "x0Ovb1evWAaw_22pzcaL-RMMqGjpYbeUF1Kt0wVIm2Y",
+        this.onUpdateStart = gu -> {
+            Log.d("GLASSES_UPDATE", String.format("onUpdateStart    : %s", gu));
+        };
+        this.onUpdateAvailableCallback = gu -> {
+            Log.d("GLASSES_UPDATE", String.format("onUpdateAvailableCallback    : %s", gu));
+            return true;
+        };
+        this.onUpdateProgress = gu -> {
+            Log.d("GLASSES_UPDATE", String.format("onUpdateProgress : %s", gu));
+        };
+        this.onUpdateSuccess = gu -> {
+            Log.d("GLASSES_UPDATE", String.format("onUpdateSuccess  : %s", gu));
+        };
+        this.onUpdateError = gu -> {
+            Log.d("GLASSES_UPDATE", String.format("onUpdateError  : %s", gu));
+        };
+        this.alsdk = Sdk.init(this.getApplicationContext(),
+            token,
             this::onUpdateStart,
             this::onUpdateAvailableCallback,
             this::onUpdateProgress,
