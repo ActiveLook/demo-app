@@ -29,7 +29,28 @@ class GlassesTableViewController: UITableViewController {
     private var scanTimer: Timer?
     private var connectionTimer: Timer?
     
-    private var activeLook: ActiveLookSDK = ActiveLookSDK.shared
+    private lazy var alookSDKToken: String = {
+        guard let infoDictionary: [String: Any] = Bundle.main.infoDictionary else { return "" }
+        guard let activelookSDKToken: String = infoDictionary["ACTIVELOOK_SDK_TOKEN"] as? String else { return "" }
+        return activelookSDKToken
+    }()
+    
+    private lazy var activeLook: ActiveLookSDK = {
+        try! ActiveLookSDK.shared(
+                token: alookSDKToken,
+                   onUpdateStartCallback: { SdkGlassesUpdate in
+                    print("onUpdateStartCallback")
+                }, onUpdateAvailableCallback: { (SdkGlassesUpdate, _: () -> Void) in
+                    print("onUpdateAvailableCallback")
+                }, onUpdateProgressCallback: { SdkGlassesUpdate in
+                    print("onUpdateProgressCallback")
+                }, onUpdateSuccessCallback: { SdkGlassesUpdate in
+                    print("onUpdateSuccessCallback")
+                }, onUpdateFailureCallback: { SdkGlassesUpdate in
+                    print("onUpdateFailureCallback")
+                })
+    }()
+
     private var discoveredGlassesArray: [DiscoveredGlasses] = []
     private var connecting: Bool = false
     

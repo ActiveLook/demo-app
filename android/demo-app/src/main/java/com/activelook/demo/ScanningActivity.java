@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,8 @@ import androidx.core.app.ActivityCompat;
 
 import com.activelook.activelooksdk.DiscoveredGlasses;
 import com.activelook.activelooksdk.Sdk;
+import com.activelook.activelooksdk.types.GlassesUpdate;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class ScanningActivity extends AppCompatActivity {
@@ -106,7 +105,6 @@ public class ScanningActivity extends AppCompatActivity {
             }),
             glasses -> {
                 ((DemoApp) this.getApplication()).onDisconnected();
-                glasses.disconnect();
             });
         });
         /*
@@ -119,10 +117,33 @@ public class ScanningActivity extends AppCompatActivity {
             ScanningActivity.this.setResult(Activity.RESULT_CANCELED);
             ScanningActivity.this.finish();
         });
-        this.alsdk = ((DemoApp) this.getApplication()).getActiveLookSdk();
+        this.alsdk = ((DemoApp) this.getApplication()).getActiveLookSdk(
+                this::onUpdateStart,
+                this::onUpdateAvailableCallback,
+                this::onUpdateProgress,
+                this::onUpdateSuccess,
+                this::onUpdateError
+        );
         this.alsdk.startScan(activeLookDiscoveredGlassesI -> runOnUiThread(() -> {
             ScanningActivity.this.scanResults.add(activeLookDiscoveredGlassesI);
         }));
+    }
+
+    private void onUpdateStart(final GlassesUpdate glassesUpdate) {
+        this.logText(glassesUpdate);
+    }
+    private boolean onUpdateAvailableCallback(final GlassesUpdate glassesUpdate) {
+        this.logText(glassesUpdate);
+        return true;
+    }
+    private void onUpdateProgress(final GlassesUpdate glassesUpdate) {
+        this.logText(glassesUpdate);
+    }
+    private void onUpdateSuccess(final GlassesUpdate glassesUpdate) {
+        this.logText(glassesUpdate);
+    }
+    private void onUpdateError(final GlassesUpdate glassesUpdate) {
+        this.logText(glassesUpdate);
     }
 
     @Override
@@ -145,4 +166,16 @@ public class ScanningActivity extends AppCompatActivity {
         super.onPause();
     }
 
+    private void logText(Object data) {
+        this.runOnUiThread(() -> {
+            final TextView textView = this.findViewById(R.id.textView);
+            final String msg = data == null ? "" : data.toString();
+            textView.setText(msg);
+            if (data != null) {
+                Log.d("ScanningActivity", data.toString());
+            } else {
+                textView.setText("");
+            }
+        });
+    }
 }
