@@ -29,6 +29,7 @@
 		2307D9972732C1CB000732DC /* GeneralCommandsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2307D9882732C1CB000732DC /* GeneralCommandsViewController.swift */; };
 		23923B742747AF0400C441AA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 23923B732747AF0400C441AA /* README.md */; };
 		23923B7F274D646600C441AA /* ConfigDemo-4.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 23923B7D274D646600C441AA /* ConfigDemo-4.0.txt */; };
+		AA0570181C20B536CE9E2A25 /* Pods_example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44D6776A95277934A2901B7 /* Pods_example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,10 @@
 		2307D9882732C1CB000732DC /* GeneralCommandsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralCommandsViewController.swift; sourceTree = "<group>"; };
 		23923B732747AF0400C441AA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		23923B7D274D646600C441AA /* ConfigDemo-4.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ConfigDemo-4.0.txt"; sourceTree = "<group>"; };
+		3DFA9A596BAECA13F99E62D5 /* Pods-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example.debug.xcconfig"; path = "Target Support Files/Pods-example/Pods-example.debug.xcconfig"; sourceTree = "<group>"; };
+		73AE00685FDF7E762F27B93B /* Pods-example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example.release.xcconfig"; path = "Target Support Files/Pods-example/Pods-example.release.xcconfig"; sourceTree = "<group>"; };
+		8B6E3AAE28ACDE200084C9EC /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		B44D6776A95277934A2901B7 /* Pods_example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0570181C20B536CE9E2A25 /* Pods_example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,8 +78,11 @@
 		2307D95927329CB9000732DC = {
 			isa = PBXGroup;
 			children = (
+				8B6E3AAE28ACDE200084C9EC /* Config.xcconfig */,
 				2307D96427329CB9000732DC /* example */,
 				2307D96327329CB9000732DC /* Products */,
+				54B88E1DE75CC70EFD56C85E /* Pods */,
+				493244ADD54BBCC95BB5EF87 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +132,23 @@
 			path = Assets;
 			sourceTree = SOURCE_ROOT;
 		};
+		493244ADD54BBCC95BB5EF87 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B44D6776A95277934A2901B7 /* Pods_example.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		54B88E1DE75CC70EFD56C85E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3DFA9A596BAECA13F99E62D5 /* Pods-example.debug.xcconfig */,
+				73AE00685FDF7E762F27B93B /* Pods-example.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -130,9 +156,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2307D97627329CBA000732DC /* Build configuration list for PBXNativeTarget "example" */;
 			buildPhases = (
+				73932919B6E2CEAF169820BF /* [CP] Check Pods Manifest.lock */,
 				2307D95E27329CB9000732DC /* Sources */,
 				2307D95F27329CB9000732DC /* Frameworks */,
 				2307D96027329CB9000732DC /* Resources */,
+				DB2A358AB0B4865484856D5B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,6 +219,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		73932919B6E2CEAF169820BF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB2A358AB0B4865484856D5B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2307D95E27329CB9000732DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -240,6 +310,7 @@
 /* Begin XCBuildConfiguration section */
 		2307D97427329CBA000732DC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B6E3AAE28ACDE200084C9EC /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -301,6 +372,7 @@
 		};
 		2307D97527329CBA000732DC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B6E3AAE28ACDE200084C9EC /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -356,14 +428,16 @@
 		};
 		2307D97727329CBA000732DC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DFA9A596BAECA13F99E62D5 /* Pods-example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H8BAC9RW5Z;
+				DEVELOPMENT_TEAM = JCTNLYJ6H7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = example/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Need bluetooth to connect to ActiveLook glasses";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -385,14 +459,16 @@
 		};
 		2307D97827329CBA000732DC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73AE00685FDF7E762F27B93B /* Pods-example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H8BAC9RW5Z;
+				DEVELOPMENT_TEAM = JCTNLYJ6H7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = example/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Need bluetooth to connect to ActiveLook glasses";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
