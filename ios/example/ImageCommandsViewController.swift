@@ -41,7 +41,7 @@ class ImageCommandsViewController : CommandsTableViewController {
             "Display image 4",
             "Display image at the bottom of the screen",
             "Save test image",
-            "Save test image 1 bpp",
+            "Image Picker",
             "Delete image",
             "Clear"
         ]
@@ -54,7 +54,7 @@ class ImageCommandsViewController : CommandsTableViewController {
             self.displayImage4,
             self.displayImageBottomScreen,
             self.saveImage,
-            self.saveImage1bpp,
+            self.imagePickerViewController,
             self.deleteImage,
             self.clear
         ]
@@ -96,14 +96,17 @@ class ImageCommandsViewController : CommandsTableViewController {
         glasses.imgDisplay(id: 0, x: 152, y: 0)
     }
     
+    func imagePickerViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let viewController = storyboard.instantiateViewController(identifier: "ImagePickerViewController") as? ImagePickerViewController {
+            viewController.glasses = glasses
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
     func saveImage() {
         glasses.cfgWrite(name: "DemoApp", version: 1, password: 42)
         glasses.imgSave(id: 0, imageData: ImageData(width: testImageWidth, data: testImageData))
-    }
-
-    func saveImage1bpp() {
-        glasses.cfgWrite(name: "DemoApp", version: 1, password: 42)
-        glasses.imgSave1bpp(imageData: ImageData(width: testImage1bppWidth, data: testImage1bppData))
     }
 
     func deleteImage() {
