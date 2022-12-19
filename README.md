@@ -24,3 +24,11 @@ ACTIVELOOK_CFG_PASSWORD = <0xDEADBEEF> //The ActiveLook config password, if need
 ```
 
 Open the "ios" folder with Xcode. Connect a ios phone an launch the app
+
+## SDK Token
+
+This field needs to be left blank by default.
+
+The SDK Token is only useful for (and provided to) eyewear partners developing their own ActiveLook application. It allows the partner application to be authenticated by the ActiveLook update server and to update Firwmware and / or system configuration (Alook) onto any ActiveLook-powered eyewear.
+
+Leaving the field blank will allow app compilation without requiring an access to the update server.
