@@ -81,6 +81,13 @@
                 android:text="@string/button_bitmaps_commands" />
 
             <Button
+                android:id="@+id/viewer_commands"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:text="@string/button_viewer_commands" />
+
+            <Button
                 android:id="@+id/font_commands"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
