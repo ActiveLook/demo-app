@@ -30,22 +30,12 @@ public class ViewerCommands extends MainActivity2 {
 
         Glasses connectedGlasses;
         return new Map.Entry[]{
-                item("erase Cfg", glasses -> {
-                    glasses.cfgDelete("Viewer");
-                    ViewerCommands.this.snack(String.format("Config erased"));
-                }),
-                item("Cfg read", glasses -> {
-                    glasses.cfgRead(
-                            "Viewer",
-                            r -> snack(String.format("cfgRead: %s", r))
-                    );
-                }),
-                item("imgSave", glasses -> {
+                item("Add image", glasses -> {
                     mGetContent.launch(("image/*"));
                 }),
-                item("Next image", glasses  -> {
+                item("Display next image", glasses  -> {
                     glasses.clear();
-                    glasses.cfgSet("Viewer");
+                    glasses.cfgSet("viewer");
                     glasses.demo(DemoPattern.IMAGE);
                 }),
                 item("Enable gesture", glasses -> {
@@ -53,6 +43,16 @@ public class ViewerCommands extends MainActivity2 {
                     glasses.subscribeToSensorInterfaceNotifications(() ->
                             gestureNextImg()
                     );
+                }),
+                item("Read 'viewer' config", glasses -> {
+                    glasses.cfgRead(
+                            "viewer",
+                            r -> snack(String.format("cfgRead: %s", r))
+                    );
+                }),
+                item("erase 'viewer' config", glasses -> {
+                    glasses.cfgDelete("viewer");
+                    ViewerCommands.this.snack(String.format("Config erased"));
                 }),
         };
     }
@@ -66,11 +66,11 @@ public class ViewerCommands extends MainActivity2 {
                     try {
                         toast(String.format("Saving image..."));
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(cr, uri);
-                        connectedGlasses.cfgWrite("Viewer", 1, 1337);
-                        connectedGlasses.cfgRead("Viewer", cfgi -> {
+                        connectedGlasses.cfgWrite("viewer", 1, 1337);
+                        connectedGlasses.cfgRead("viewer", cfgi -> {
                             connectedGlasses.imgSave((byte) cfgi.getNbImg(), bitmap, ImgSaveFormat.MONO_4BPP_HEATSHRINK_SAVE_COMP);
                             bitmap.recycle();
-                            connectedGlasses.cfgRead("Viewer", r -> snack(String.format("Image saved : n°%s",cfgi.getNbImg())));
+                            connectedGlasses.cfgRead("viewer", r -> snack(String.format("Image saved : n°%s",cfgi.getNbImg())));
                         });
                     } catch (Exception e) {
                         Log.e("imagePicker","Error"+ e.getMessage());
@@ -81,12 +81,12 @@ public class ViewerCommands extends MainActivity2 {
 
     private void gestureNextImg(){
         connectedGlasses.clear();
-        connectedGlasses.cfgSet("Viewer");
+        connectedGlasses.cfgSet("viewer");
         connectedGlasses.demo(DemoPattern.IMAGE);
     }
 
     private Toast toast(Object data) {
-        Log.d("ViewerCommands", data.toString());
+        Log.d("viewerCommands", data.toString());
         Toast toast = Toast.makeText(this, data.toString(), Toast.LENGTH_SHORT);
         toast.show();
         return toast;

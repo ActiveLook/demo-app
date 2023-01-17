@@ -93,10 +93,12 @@
     <string name="button_configuration_commands">Configuration</string>
     <string name="button_font_commands">Font</string>
     <string name="button_bitmaps_commands">Bitmaps</string>
-    <string name="button_viewer_commands">Viewer</string>
+    <string name="button_viewer_commands">Demo viewer</string>
     <string name="button_layouts_commands">Layouts</string>
     <string name="button_gauge_commands">Gauge</string>
     <string name="button_page_commands">Page</string>
     <string name="button_debug_commands">Debug</string>
+
+    <string name="textview_viewer_commands">Upload, display and swipe through your test images</string>
 
 </resources>

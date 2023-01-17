@@ -81,13 +81,6 @@
                 android:text="@string/button_bitmaps_commands" />
 
             <Button
-                android:id="@+id/viewer_commands"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingVertical="12dp"
-                android:text="@string/button_viewer_commands" />
-
-            <Button
                 android:id="@+id/font_commands"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,6 +114,23 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="12dp"
                 android:text="@string/button_configuration_commands" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
+
+            <Button
+                android:id="@+id/viewer_commands"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:text="@string/button_viewer_commands" />
+
+            <TextView
+                android:id="@+id/viewer_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/textview_viewer_commands" />
 
             <Space
                 android:layout_width="32dp"
