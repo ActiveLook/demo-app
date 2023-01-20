@@ -29,6 +29,8 @@ class LayoutCommandsViewController : CommandsTableViewController {
 //            "List layouts",
             "Display time layout",
             "Display chrono layout",
+            "Clear and Display chrono layout",
+            "Clear and Display chrono layout at a new position",
             "Display distance layout",
             "Display average speed layout",
             "Display elevation layout",
@@ -46,6 +48,8 @@ class LayoutCommandsViewController : CommandsTableViewController {
 //            self.listLayouts,
             self.displayTimeLayout,
             self.displayChronoLayout,
+            self.clearAndDisplayChronoLayout,
+            self.clearAndDisplayChronoLayoutExended,
             self.displayDistanceLayout,
             self.displayAverageSpeedLayout,
             self.displayElevationLayout,
@@ -68,38 +72,73 @@ class LayoutCommandsViewController : CommandsTableViewController {
 //    }
     
     func displayTimeLayout() {
+        glasses.cfgSet(name: "ALooK")
         glasses.layoutDisplay(id: 10, text: "15:36")
     }
     
     func displayChronoLayout() {
+        glasses.cfgSet(name: "ALooK")
         glasses.layoutDisplay(id: 11, text: "00:00:10")
     }
     
+    func clearAndDisplayChronoLayout() {
+        glasses.cfgSet(name: "ALooK")
+        glasses.layoutClearAndDisplay(id: 11, text: "00:00:10")
+        let seconds = 1.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            self.glasses.layoutClearAndDisplay(id: 11, text: "00:00:11")
+            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                self.glasses.layoutClearAndDisplay(id: 11, text: "00:00:12")
+        
+            }
+        }
+    }
+    
+    func clearAndDisplayChronoLayoutExended() {
+        glasses.cfgSet(name: "ALooK")
+        glasses.layoutClearAndDisplayExtended(id: 11, x: 30, y: 25, text: "00:00:10")
+        let seconds = 1.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            self.glasses.layoutClearAndDisplayExtended(id: 11, x: 30, y: 25, text: "00:00:11")
+            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                self.glasses.layoutClearAndDisplayExtended(id: 11, x: 30, y: 25, text: "00:00:12")
+        
+            }
+        }
+    }
+    
     func displayDistanceLayout() {
+        glasses.cfgSet(name: "ALooK")
         glasses.layoutDisplay(id: 12, text: "12.5")
     }
     
     func displayAverageSpeedLayout() {
+        glasses.cfgSet(name: "ALooK")
         glasses.layoutDisplay(id: 14, text: "10.2")
     }
     
     func displayElevationLayout() {
+        glasses.cfgSet(name: "ALooK")
         glasses.layoutDisplay(id: 19, text: "804")
     }
     
     func clearTimeLayoutArea() {
+        glasses.cfgSet(name: "ALooK")
         glasses.layoutClear(id: 10)
     }
     
     func clearChronoLayoutArea() {
+        glasses.cfgSet(name: "ALooK")
         glasses.layoutClear(id: 11)
     }
     
     func changeTimeLayoutPosition() {
+        glasses.cfgSet(name: "ALooK")
         glasses.layoutPosition(id: 10, x: 10, y: 10)
     }
     
     func displayTimeAtBottomOfScreen() {
+        glasses.cfgSet(name: "ALooK")
         glasses.layoutDisplayExtended(id: 10, x: 20, y: 0, text: "15:36")
     }
     
@@ -124,10 +163,12 @@ class LayoutCommandsViewController : CommandsTableViewController {
     }
     
     func displayCustomLayout() {
+        glasses.cfgSet(name: "DemoApp")
         glasses.layoutDisplay(id: 30, text: "12.4")
     }
     
     func deleteCustomLayout() {
+        glasses.cfgSet(name: "DemoApp")
         glasses.layoutDelete(id: 30)
     }
 }

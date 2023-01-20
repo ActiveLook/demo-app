@@ -27,7 +27,7 @@ import java.util.Map;
 public class MainActivity2 extends AppCompatActivity {
 
     private ArrayAdapter<Map.Entry<String, Consumer<Glasses>>> items;
-    private Glasses connectedGlasses;
+    public Glasses connectedGlasses;
 
     protected static final Map.Entry<String, Consumer<Glasses>> item(String name, Consumer<Glasses> callback) {
         return new AbstractMap.SimpleImmutableEntry<>(name, callback);

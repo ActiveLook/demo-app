@@ -40,7 +40,7 @@ public class ScanningActivity extends AppCompatActivity {
          * Check location permission (needed for BLE scan)
          */
         ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.BLUETOOTH_CONNECT,Manifest.permission.BLUETOOTH_SCAN},
                 0);
 
         /*
@@ -100,8 +100,7 @@ public class ScanningActivity extends AppCompatActivity {
                 }
             },
             discoveredGlasses -> runOnUiThread(() -> {
-                Toast.makeText(ScanningActivity.this, "Connection failure", Toast.LENGTH_LONG).show();
-                ScanningActivity.this.finish();
+                Toast.makeText(ScanningActivity.this, "Connection failure, waiting for reconnection", Toast.LENGTH_LONG).show();
             }),
             glasses -> {
                 ((DemoApp) this.getApplication()).onDisconnected();
@@ -132,9 +131,10 @@ public class ScanningActivity extends AppCompatActivity {
     private void onUpdateStart(final GlassesUpdate glassesUpdate) {
         this.logText(glassesUpdate);
     }
-    private boolean onUpdateAvailableCallback(final GlassesUpdate glassesUpdate) {
-        this.logText(glassesUpdate);
-        return true;
+    private void onUpdateAvailableCallback(final android.util.Pair<GlassesUpdate, Runnable> glassesUpdateAndRunnable) {
+        this.logText(glassesUpdateAndRunnable.first);
+        Log.d("GLASSES_UPDATE", String.format("onUpdateAvailableCallback   : %s", glassesUpdateAndRunnable.first));
+        glassesUpdateAndRunnable.second.run();
     }
     private void onUpdateProgress(final GlassesUpdate glassesUpdate) {
         this.logText(glassesUpdate);

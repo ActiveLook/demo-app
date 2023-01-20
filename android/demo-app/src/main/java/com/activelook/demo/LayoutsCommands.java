@@ -75,6 +75,18 @@ public class LayoutsCommands extends MainActivity2 {
                     glasses.cfgSet("DemoApp");
                     glasses.layoutDisplayExtended((byte) 0x00, (short) 100, (byte) 80, "On L1.e2");
                 }),
+                item("layoutClearExtended", glasses -> {
+                    glasses.cfgSet("DemoApp");
+                    glasses.layoutClearExtended((byte) 0x00, (short) 100, (byte) 80);
+                }),
+                item("layoutDisplayClearExtended", glasses -> {
+                    glasses.cfgSet("DemoApp");
+                    glasses.layoutClearAndDisplayExtended((byte) 0x00, (short) 100, (byte) 80, "On L1.e2");
+                }),
+                item("layoutClearAndDisplay", glasses -> {
+                    glasses.cfgSet("DemoApp");
+                    glasses.layoutClearAndDisplay((byte) 0x00, "On L1.e2");
+                }),
                 item("layoutGet", glasses -> {
                     glasses.cfgSet("DemoApp");
                     glasses.layoutGet(

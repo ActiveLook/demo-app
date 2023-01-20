@@ -53,6 +53,14 @@ public class GraphicsCommands extends MainActivity2 {
                     pts.add(new Point(100, 150));
                     glasses.polyline(pts);
                 }),
+                item("polyline thickness(4 pts)", glasses -> {
+                    ArrayList<Point> pts = new ArrayList<>();
+                    pts.add(new Point(50, 50));
+                    pts.add(new Point(50, 100));
+                    pts.add(new Point(100, 100));
+                    pts.add(new Point(100, 150));
+                    glasses.polyline((byte)5, pts);
+                }),
         };
     }
 

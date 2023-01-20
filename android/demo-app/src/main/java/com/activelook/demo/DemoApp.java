@@ -2,6 +2,7 @@ package com.activelook.demo;
 
 import android.app.Application;
 import android.util.Log;
+import android.util.Pair;
 
 import androidx.core.util.Consumer;
 import androidx.core.util.Predicate;
@@ -15,7 +16,7 @@ public class DemoApp extends Application {
     private boolean connected;
     private String token = BuildConfig.ACTIVELOOK_SDK_TOKEN;
     private Consumer<GlassesUpdate> onUpdateStart;
-    private Predicate<GlassesUpdate> onUpdateAvailableCallback;
+    private Consumer<Pair<GlassesUpdate, Runnable>> onUpdateAvailableCallback;
     private Consumer<GlassesUpdate> onUpdateProgress;
     private Consumer<GlassesUpdate> onUpdateSuccess;
     private Consumer<GlassesUpdate> onUpdateError;
@@ -27,9 +28,9 @@ public class DemoApp extends Application {
         this.onUpdateStart = gu -> {
             Log.d("GLASSES_UPDATE", String.format("onUpdateStart    : %s", gu));
         };
-        this.onUpdateAvailableCallback = gu -> {
-            Log.d("GLASSES_UPDATE", String.format("onUpdateAvailableCallback    : %s", gu));
-            return true;
+        this.onUpdateAvailableCallback = gu_f -> {
+            Log.d("GLASSES_UPDATE", String.format("onUpdateAvailableCallback   : %s", gu_f.first));
+            gu_f.second.run();
         };
         this.onUpdateProgress = gu -> {
             Log.d("GLASSES_UPDATE", String.format("onUpdateProgress : %s", gu));
@@ -51,7 +52,7 @@ public class DemoApp extends Application {
     }
 
     public Sdk getActiveLookSdk(final Consumer<GlassesUpdate> onUpdateStart,
-                                final Predicate<GlassesUpdate> onUpdateAvailableCallback,
+                                final Consumer<Pair<GlassesUpdate, Runnable>> onUpdateAvailableCallback,
                                 final Consumer<GlassesUpdate> onUpdateProgress,
                                 final Consumer<GlassesUpdate> onUpdateSuccess,
                                 final Consumer<GlassesUpdate> onUpdateError) {
@@ -80,11 +81,10 @@ public class DemoApp extends Application {
             this.onUpdateStart.accept(glassesUpdate);
         }
     }
-    private boolean onUpdateAvailableCallback(final GlassesUpdate glassesUpdate) {
+    private void onUpdateAvailableCallback(final android.util.Pair<GlassesUpdate, Runnable> glassesUpdate) {
         if (this.onUpdateAvailableCallback != null) {
-            return this.onUpdateAvailableCallback.test(glassesUpdate);
+            this.onUpdateAvailableCallback.accept(glassesUpdate);
         }
-        return false;
     }
     private void onUpdateProgress(final GlassesUpdate glassesUpdate) {
         if (this.onUpdateProgress != null) {
