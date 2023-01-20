@@ -1,5 +1,6 @@
 package com.activelook.demo;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
 import com.activelook.activelooksdk.Glasses;
 import com.activelook.activelooksdk.types.DemoPattern;
@@ -29,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+         * Check location permission (needed for BLE scan)
+         */
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.BLUETOOTH_CONNECT,Manifest.permission.BLUETOOTH_SCAN},
+                0);
+
         if (savedInstanceState != null && ((DemoApp) this.getApplication()).isConnected()) {
             this.connectedGlasses = savedInstanceState.getParcelable("connectedGlasses");
             this.connectedGlasses.setOnDisconnected(glasses -> MainActivity.this.disconnect());
