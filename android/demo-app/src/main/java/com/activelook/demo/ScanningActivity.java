@@ -37,13 +37,6 @@ public class ScanningActivity extends AppCompatActivity {
         setContentView(R.layout.scan_activity);
 
         /*
-         * Check location permission (needed for BLE scan)
-         */
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.BLUETOOTH_CONNECT,Manifest.permission.BLUETOOTH_SCAN},
-                0);
-
-        /*
          * Initialize scan result list
          */
         final LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
