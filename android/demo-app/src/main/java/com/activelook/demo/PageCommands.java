@@ -29,6 +29,9 @@ public class PageCommands extends MainActivity2 {
                 item("pageDisplay", glasses -> {
                     glasses.pageDisplay((byte) 0x01, new String [] { "Value1", "Value2"} );
                 }),
+                item("pageDisplay", glasses -> {
+                    glasses.pageClearAndDisplay((byte) 0x01, new String [] { "Value1", "Value2"} );
+                }),
                 item("pageClear", glasses -> {
                     glasses.pageClear((byte) 0x01);
                 }),

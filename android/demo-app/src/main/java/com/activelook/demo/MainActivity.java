@@ -84,6 +84,11 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("connectedGlasses", this.connectedGlasses);
             MainActivity.this.startActivity(intent);
         });
+        this.findViewById(R.id.viewer_commands).setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, ViewerCommands.class);
+            intent.putExtra("connectedGlasses", this.connectedGlasses);
+            MainActivity.this.startActivity(intent);
+        });
         this.findViewById(R.id.font_commands).setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, FontCommands.class);
             intent.putExtra("connectedGlasses", this.connectedGlasses);
