@@ -100,8 +100,7 @@ public class ScanningActivity extends AppCompatActivity {
                 }
             },
             discoveredGlasses -> runOnUiThread(() -> {
-                Toast.makeText(ScanningActivity.this, "Connection failure", Toast.LENGTH_LONG).show();
-                ScanningActivity.this.finish();
+                Toast.makeText(ScanningActivity.this, "Connection failure, waiting for reconnection", Toast.LENGTH_LONG).show();
             }),
             glasses -> {
                 ((DemoApp) this.getApplication()).onDisconnected();
@@ -133,7 +132,7 @@ public class ScanningActivity extends AppCompatActivity {
         this.logText(glassesUpdate);
     }
     private void onUpdateAvailableCallback(final android.util.Pair<GlassesUpdate, Runnable> glassesUpdateAndRunnable) {
-        this.logText(glassesUpdate);
+        this.logText(glassesUpdateAndRunnable.first);
         Log.d("GLASSES_UPDATE", String.format("onUpdateAvailableCallback   : %s", glassesUpdateAndRunnable.first));
         glassesUpdateAndRunnable.second.run();
     }
