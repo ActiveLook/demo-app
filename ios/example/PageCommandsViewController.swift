@@ -29,12 +29,14 @@ class PageCommandsViewController : CommandsTableViewController {
             "List pages",
             "Save page",
             "Display page",
+            "Clear and display page",
             "Delete page"
         ]
         commandActions = [
             self.listPages,
             self.pageSave,
             self.pageDisplay,
+            self.pageClearAndDisplay,
             self.pageDelete
         ]
     }
@@ -58,6 +60,11 @@ class PageCommandsViewController : CommandsTableViewController {
     func pageDisplay() {
         glasses.cfgSet(name: "DemoApp")
         glasses.pageDisplay(id: 1, texts: ["AA", "BB"])
+    }
+    
+    func pageClearAndDisplay() {
+        glasses.cfgSet(name: "DemoApp")
+        glasses.pageClearAndDisplay(id: 1, texts: ["AA", "BB"])
     }
 
     func pageDelete() {
