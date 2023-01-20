@@ -81,7 +81,7 @@ public class DemoApp extends Application {
             this.onUpdateStart.accept(glassesUpdate);
         }
     }
-    private void onUpdateAvailableCallback(android.util.Pair<GlassesUpdate, Runnable> glassesUpdate) {
+    private void onUpdateAvailableCallback(final android.util.Pair<GlassesUpdate, Runnable> glassesUpdate) {
         if (this.onUpdateAvailableCallback != null) {
             this.onUpdateAvailableCallback.accept(glassesUpdate);
         }

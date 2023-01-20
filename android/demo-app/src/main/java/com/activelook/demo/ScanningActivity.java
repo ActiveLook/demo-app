@@ -132,8 +132,10 @@ public class ScanningActivity extends AppCompatActivity {
     private void onUpdateStart(final GlassesUpdate glassesUpdate) {
         this.logText(glassesUpdate);
     }
-    private void onUpdateAvailableCallback(android.util.Pair<GlassesUpdate, Runnable> glassesUpdate) {
+    private void onUpdateAvailableCallback(final android.util.Pair<GlassesUpdate, Runnable> glassesUpdateAndRunnable) {
         this.logText(glassesUpdate);
+        Log.d("GLASSES_UPDATE", String.format("onUpdateAvailableCallback   : %s", glassesUpdateAndRunnable.first));
+        glassesUpdateAndRunnable.second.run();
     }
     private void onUpdateProgress(final GlassesUpdate glassesUpdate) {
         this.logText(glassesUpdate);
