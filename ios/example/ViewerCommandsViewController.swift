@@ -90,7 +90,7 @@ class ViewerCommandsViewController : CommandsTableViewController, UIImagePickerC
                 let alert = UIAlertController(title: "Updating configuration", message: "Please wait until image get saved", preferredStyle: .alert)
                 self.present(alert, animated: true)
                 
-                self.glasses.imgSave(id: config.nbImg, image: image, imgSaveFmt: ImgSaveFmt.MONO_4BPP_HEATSHRINK)
+                self.glasses.imgSave(id: config.nbImg, image: image, imgSaveFmt: ImgSaveFmt.MONO_4BPP_HEATSHRINK_SAVE_COMP)
                 
                 self.glasses.cfgRead(name: "viewer", callback: { (config: ConfigurationElementsInfo) in
                     self.dismiss(animated: true)
