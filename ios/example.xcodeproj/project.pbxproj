@@ -30,6 +30,7 @@
 		23923B742747AF0400C441AA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 23923B732747AF0400C441AA /* README.md */; };
 		23923B7F274D646600C441AA /* ConfigDemo-4.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 23923B7D274D646600C441AA /* ConfigDemo-4.0.txt */; };
 		AA0570181C20B536CE9E2A25 /* Pods_example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44D6776A95277934A2901B7 /* Pods_example.framework */; };
+		B5696C4E29813A1700F3B72A /* ViewerCommandsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5696C4D29813A1700F3B72A /* ViewerCommandsViewController.swift */; };
 		B5D7C5792948D15000F55A70 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D7C5762948D15000F55A70 /* ImagePicker.swift */; };
 		B5D7C57A2948D15000F55A70 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D7C5772948D15000F55A70 /* ImagePickerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		73AE00685FDF7E762F27B93B /* Pods-example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example.release.xcconfig"; path = "Target Support Files/Pods-example/Pods-example.release.xcconfig"; sourceTree = "<group>"; };
 		8B6E3AAE28ACDE200084C9EC /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		B44D6776A95277934A2901B7 /* Pods_example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5696C4D29813A1700F3B72A /* ViewerCommandsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewerCommandsViewController.swift; sourceTree = "<group>"; };
 		B5D7C5762948D15000F55A70 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B5D7C5772948D15000F55A70 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +128,7 @@
 				23923B732747AF0400C441AA /* README.md */,
 				2307D96727329CB9000732DC /* SceneDelegate.swift */,
 				2307D97D2732C1CB000732DC /* StatisticsCommandsViewController.swift */,
+				B5696C4D29813A1700F3B72A /* ViewerCommandsViewController.swift */,
 			);
 			path = example;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				2307D9922732C1CB000732DC /* ImageCommandsViewController.swift in Sources */,
 				2307D9902732C1CB000732DC /* NotificationsViewController.swift in Sources */,
 				2307D9912732C1CB000732DC /* GraphicsCommandsViewController.swift in Sources */,
+				B5696C4E29813A1700F3B72A /* ViewerCommandsViewController.swift in Sources */,
 				2307D98B2732C1CB000732DC /* CommandsTableViewController.swift in Sources */,
 				2307D9942732C1CB000732DC /* CommandsMenuTableViewController.swift in Sources */,
 				2307D98C2732C1CB000732DC /* StatisticsCommandsViewController.swift in Sources */,

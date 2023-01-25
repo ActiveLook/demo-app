@@ -23,7 +23,7 @@ class ViewerCommandsViewController : CommandsTableViewController, UIImagePickerC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Image commands"
+        title = "Demo viewer"
         
         commandNames = [
             "Add image",

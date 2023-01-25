@@ -39,7 +39,7 @@ class CommandsMenuTableViewController: CommandsTableViewController {
             "Statistics",
             "Configuration",
             "Notifications",
-            "Viewer"
+            "Demo viewer"
         ]
 
         commandActions = [
