@@ -25,6 +25,7 @@ import java.util.Map;
 
 public class ViewerCommands extends MainActivity2 {
     LinearLayout newLinearLayout;
+    Boolean gesture = false;
     @Override
     protected String getCommandGroup() {
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
@@ -47,8 +48,9 @@ public class ViewerCommands extends MainActivity2 {
                     glasses.cfgSet("viewer");
                     glasses.demo(DemoPattern.IMAGE);
                 }),
-                item("Enable gesture", glasses -> {
-                    glasses.gesture(true);
+                item("Enable/disable gesture", glasses -> {
+                    gesture = !gesture;
+                    glasses.gesture(gesture);
                     glasses.subscribeToSensorInterfaceNotifications(() ->
                             gestureNextImg()
                     );
