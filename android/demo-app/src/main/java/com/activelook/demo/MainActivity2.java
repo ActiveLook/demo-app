@@ -66,7 +66,7 @@ public class MainActivity2 extends AppCompatActivity {
                 button.setText(cmd.getKey());
                 button.setOnClickListener(view -> {
                     cmd.getValue().accept(MainActivity2.this.connectedGlasses);
-                    result.setText("Sended");
+                    result.setText("Sent");
                 });
                 return convertView;
             }
