@@ -41,7 +41,7 @@ public class BitmapsCommands extends MainActivity2 {
                 })),
                 item("imgSave", glasses -> {
                     try {
-                        Bitmap img1 = BitmapFactory.decodeStream(getAssets().open("lion_304x256.png"));
+                        Bitmap img1 = BitmapFactory.decodeStream(getAssets().open("tigre_304x256.png"));
                         glasses.cfgWrite("DemoApp", 1, 42);
                         glasses.imgSave((byte) 0x01, img1, ImgSaveFormat.MONO_4BPP_HEATSHRINK_SAVE_COMP);
                         img1.recycle();
@@ -94,7 +94,7 @@ public class BitmapsCommands extends MainActivity2 {
                 }),
                 item("imgStream", glasses -> {
                     try {
-                        Bitmap img1 = BitmapFactory.decodeStream(getAssets().open("lion_304x256.png"));
+                        Bitmap img1 = BitmapFactory.decodeStream(getAssets().open("tigre_304x256.png"));
                         glasses.cfgWrite("DemoApp", 1, 42);
                         glasses.imgStream(img1, ImgStreamFormat.MONO_4BPP_HEATSHRINK, (short) 0, (short) 0);
                     } catch (IOException e) {
