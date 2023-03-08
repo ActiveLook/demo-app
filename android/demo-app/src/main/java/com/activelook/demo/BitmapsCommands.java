@@ -18,7 +18,6 @@ import com.activelook.activelooksdk.types.Image1bppData;
 import com.activelook.activelooksdk.types.ImageData;
 import com.activelook.activelooksdk.types.ImgSaveFormat;
 import com.activelook.activelooksdk.types.ImgStreamFormat;
-import com.activelook.activelooksdk.types.TextSegment;
 
 import java.io.IOException;
 import java.io.InputStream;
