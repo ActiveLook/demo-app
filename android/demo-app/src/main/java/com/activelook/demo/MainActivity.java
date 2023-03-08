@@ -124,6 +124,11 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("connectedGlasses", this.connectedGlasses);
             MainActivity.this.startActivity(intent);
         });
+        this.findViewById(R.id.widgets_commands).setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, WidgetsCommands.class);
+            intent.putExtra("connectedGlasses", this.connectedGlasses);
+            MainActivity.this.startActivity(intent);
+        });
         this.findViewById(R.id.button_disconnect).setOnClickListener(view -> MainActivity.this.disconnect());
         this.findViewById(R.id.debug).setOnClickListener(view -> {
             MainActivity.this.debugButton();

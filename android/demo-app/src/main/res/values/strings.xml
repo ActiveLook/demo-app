@@ -95,6 +95,7 @@
     <string name="button_bitmaps_commands">Bitmaps</string>
     <string name="button_viewer_commands">Demo viewer</string>
     <string name="button_layouts_commands">Layouts</string>
+    <string name="button_widgets_commands">Widgets</string>
     <string name="button_gauge_commands">Gauge</string>
     <string name="button_page_commands">Page</string>
     <string name="button_debug_commands">Debug</string>

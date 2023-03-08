@@ -115,6 +115,13 @@
                 android:paddingVertical="12dp"
                 android:text="@string/button_configuration_commands" />
 
+            <Button
+                android:id="@+id/widgets_commands"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:text="@string/button_widgets_commands" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="32dp" />
