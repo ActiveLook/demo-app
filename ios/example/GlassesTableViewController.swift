@@ -132,14 +132,17 @@ class GlassesTableViewController: UITableViewController {
                 self.navigationController?.present(alert, animated: true)
                 
             }, onConnectionError: { [weak self] (error: Error) in
-                guard let self = self else { return }
-                
-                self.connecting = false
-                self.connectionTimer?.invalidate()
-                
-                let alert = UIAlertController(title: "Error", message: "Connection to glasses failed: \(error.localizedDescription)", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true)
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    
+                    self.connecting = false
+                    self.connectionTimer?.invalidate()
+                    
+                    let alert = UIAlertController(title: "Error", message: "Connection to glasses failed: \(error.localizedDescription)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                    
+                }
             })
 
         connectionTimer = Timer.scheduledTimer(withTimeInterval: connectionTimeoutDuration, repeats: false, block: { [weak self] (timer) in
