@@ -135,19 +135,19 @@ class WidgetCommandsViewController : CommandsTableViewController {
     func widgetTargetLarge(){
         glasses.clear()
         glasses.cfgSet(name: "ALooK")
-        glasses.widgetTargetLeft(size: WidgetSize.large, x: 30, y: 30, value: 50, imgId: 1, valueType: WidgetValueType.number, unit: "kCal", shownValue:"125.2", goal: "640")
+        glasses.widgetTarget(size: WidgetSize.large, x: 30, y: 30, value: 50, imgId: 1, valueType: WidgetValueType.number, unit: "kCal", shownValue:"125.2", goal: "640")
     }
 
     func widgetTargetThin(){
         glasses.clear()
         glasses.cfgSet(name: "ALooK")
-        glasses.widgetTargetLeft(size: WidgetSize.thin, x: 30, y: 30, value: 50, imgId: 1, valueType: WidgetValueType.number, unit: "kCal", shownValue:"125.2", goal: "640")
+        glasses.widgetTarget(size: WidgetSize.thin, x: 30, y: 30, value: 50, imgId: 1, valueType: WidgetValueType.number, unit: "kCal", shownValue:"125.2", goal: "640")
     }
 
     func widgetTargetHalf(){
         glasses.clear()
         glasses.cfgSet(name: "ALooK")
-        glasses.widgetTargetLeft(size: WidgetSize.half, x: 30, y: 30, value: 50, imgId: 1, valueType: WidgetValueType.number, unit: "kCal", shownValue:"125.2", goal: "640")
+        glasses.widgetTarget(size: WidgetSize.half, x: 30, y: 30, value: 50, imgId: 1, valueType: WidgetValueType.number, unit: "kCal", shownValue:"125.2", goal: "640")
     }
 
     func widgetTargetLeftLarge(){
