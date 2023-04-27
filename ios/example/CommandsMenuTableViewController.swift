@@ -34,6 +34,7 @@ class CommandsMenuTableViewController: CommandsTableViewController {
             "Image",
             "Font",
             "Layout",
+            "Widget",
             "Page",
             "Gauge",
             "Statistics",
@@ -50,6 +51,7 @@ class CommandsMenuTableViewController: CommandsTableViewController {
             self.showImageCommands,
             self.showFontCommands,
             self.showLayoutCommands,
+            self.showWidgetCommands,
             self.showPageCommands,
             self.showGaugeCommands,
             self.showStatisticsCommands,
@@ -102,6 +104,10 @@ class CommandsMenuTableViewController: CommandsTableViewController {
     
     func showLayoutCommands() {
         navigationController?.pushViewController(LayoutCommandsViewController(glasses), animated: true)
+    }
+    
+    func showWidgetCommands() {
+        navigationController?.pushViewController(WidgetCommandsViewController(glasses), animated: true)
     }
     
     func showPageCommands() {
