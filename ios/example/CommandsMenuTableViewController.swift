@@ -38,7 +38,8 @@ class CommandsMenuTableViewController: CommandsTableViewController {
             "Gauge",
             "Statistics",
             "Configuration",
-            "Notifications"
+            "Notifications",
+            "Demo viewer"
         ]
 
         commandActions = [
@@ -53,7 +54,8 @@ class CommandsMenuTableViewController: CommandsTableViewController {
             self.showGaugeCommands,
             self.showStatisticsCommands,
             self.showConfigurationCommands,
-            self.showNotificationsViewController
+            self.showNotificationsViewController,
+            self.showViewerCommands
         ]
         
         glasses.subscribeToFlowControlNotifications { (flowControlState) -> (Void) in
@@ -124,5 +126,9 @@ class CommandsMenuTableViewController: CommandsTableViewController {
             viewController.glasses = glasses
             navigationController?.pushViewController(viewController, animated: true)
         }
+    }
+    
+    func showViewerCommands() {
+        navigationController?.pushViewController(ViewerCommandsViewController(glasses), animated: true)
     }
 }
