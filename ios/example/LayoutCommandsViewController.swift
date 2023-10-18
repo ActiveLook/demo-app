@@ -41,6 +41,7 @@ class LayoutCommandsViewController : CommandsTableViewController {
             "Save custom layout",
             "Display custom layout",
             "Delete custom layout",
+            "Layout Extra Cmd",
             "Clear",
         ]
 
@@ -60,6 +61,7 @@ class LayoutCommandsViewController : CommandsTableViewController {
             self.saveCustomLayout,
             self.displayCustomLayout,
             self.deleteCustomLayout,
+            self.extraCmdLayout,
             self.clear
         ]
     }
@@ -170,5 +172,13 @@ class LayoutCommandsViewController : CommandsTableViewController {
     func deleteCustomLayout() {
         glasses.cfgSet(name: "DemoApp")
         glasses.layoutDelete(id: 30)
+    }
+    
+    func extraCmdLayout(){
+        glasses.cfgSet(name: "DemoApp")
+        
+        let layoutExtraCmd = LayoutExtraCmd()
+        layoutExtraCmd.addSubCommandBitmap(id: 63, x: 204, y: 6)
+        glasses.layoutClearAndDisplayExtended(id: 86, x: 30, y: 129, text: "50", extraCmd: layoutExtraCmd)
     }
 }
