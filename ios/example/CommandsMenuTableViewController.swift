@@ -38,6 +38,7 @@ class CommandsMenuTableViewController: CommandsTableViewController {
             "Page",
             "Gauge",
             "Statistics",
+            "Ghost Running",
             "Configuration",
             "Notifications",
             "Demo viewer"
@@ -55,6 +56,7 @@ class CommandsMenuTableViewController: CommandsTableViewController {
             self.showPageCommands,
             self.showGaugeCommands,
             self.showStatisticsCommands,
+            self.showGhostRacingCommands,
             self.showConfigurationCommands,
             self.showNotificationsViewController,
             self.showViewerCommands
@@ -120,6 +122,10 @@ class CommandsMenuTableViewController: CommandsTableViewController {
     
     func showStatisticsCommands() {
         navigationController?.pushViewController(StatisticsCommandsViewController(glasses), animated: true)
+    }
+    
+    func showGhostRacingCommands() {
+        navigationController?.pushViewController(GhostRacingCommandsViewController(glasses), animated: true)
     }
     
     func showConfigurationCommands() {
