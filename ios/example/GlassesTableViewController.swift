@@ -24,7 +24,7 @@ class GlassesTableViewController: UITableViewController {
     // MARK: - Private properties
 
     private let scanDuration: TimeInterval = 10.0
-    private let connectionTimeoutDuration: TimeInterval = 5.0
+    private let connectionTimeoutDuration: TimeInterval = 30.0
     
     private var scanTimer: Timer?
     private var connectionTimer: Timer?
