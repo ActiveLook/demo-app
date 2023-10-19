@@ -38,7 +38,7 @@ class CommandsMenuTableViewController: CommandsTableViewController {
             "Page",
             "Gauge",
             "Statistics",
-            "Ghost Running",
+            "Ghost Racing",
             "Configuration",
             "Notifications",
             "Demo viewer"
