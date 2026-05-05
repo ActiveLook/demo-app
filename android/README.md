@@ -65,7 +65,7 @@ You can add the dependency in your application by modifying the application `bui
 and add:
 ```
 dependencies {
-  implementation 'com.github.activelook:android-sdk:v4.0.0'
+  implementation 'com.github.activelook:android-sdk:v4.5.9'
 }
 ```
 
@@ -144,7 +144,7 @@ Open a terminal and run:
 ```
 git clone https://github.com/ActiveLook/android-sdk.git
 cd android-sdk
-git checkout v4.0.0
+git checkout v4.5.9
 ```
 
 ### Step 2: Set up Android Studio
